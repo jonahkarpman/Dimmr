@@ -203,17 +203,26 @@
                 </Border>
             </Grid>
 
-            <!-- Scanline overlay (CRT effect) -->
+            <!-- Scanline overlay (CRT effect): a 1px dark line every 3px. -->
             <Rectangle Grid.RowSpan="3" IsHitTestVisible="False"
+                       RenderOptions.EdgeMode="Aliased"
                        Visibility="{Binding Scanlines, Converter={StaticResource BoolToVis}}">
                 <Rectangle.Fill>
-                    <DrawingBrush TileMode="Tile" Viewport="0,0,3,3" ViewportUnits="Absolute">
+                    <DrawingBrush TileMode="Tile" Stretch="None"
+                                  Viewport="0,0,3,3" ViewportUnits="Absolute">
                         <DrawingBrush.Drawing>
-                            <GeometryDrawing Brush="#22000000">
-                                <GeometryDrawing.Geometry>
-                                    <RectangleGeometry Rect="0,0,3,1" />
-                                </GeometryDrawing.Geometry>
-                            </GeometryDrawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="Transparent">
+                                    <GeometryDrawing.Geometry>
+                                        <RectangleGeometry Rect="0,0,3,3" />
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                                <GeometryDrawing Brush="#40000000">
+                                    <GeometryDrawing.Geometry>
+                                        <RectangleGeometry Rect="0,0,3,1" />
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
                         </DrawingBrush.Drawing>
                     </DrawingBrush>
                 </Rectangle.Fill>

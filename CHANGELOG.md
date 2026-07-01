@@ -7,6 +7,13 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.5] - 2026-07-01
+
+### Fixed
+
+- Scanlines now actually render as thin horizontal lines. The tile had no viewbox, so the
+  dark line was stretched over the whole cell and just darkened the window uniformly.
+
 ## [0.3.4] - 2026-07-01
 
 ### Fixed

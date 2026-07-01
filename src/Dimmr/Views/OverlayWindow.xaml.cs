@@ -17,6 +17,7 @@ public partial class OverlayWindow : Window
     {
         InitializeComponent();
         SourceInitialized += OnSourceInitialized;
+        Loaded += (_, _) => ApplyPlacement();
     }
 
     public void Place(int x, int y, int w, int h)
@@ -27,6 +28,8 @@ public partial class OverlayWindow : Window
         _h = h;
         if (IsLoaded || new WindowInteropHelper(this).Handle != IntPtr.Zero)
             ApplyPlacement();
+        // Reassert after layout settles, in case WPF resized on a DPI change during show.
+        Dispatcher.BeginInvoke(new Action(ApplyPlacement), System.Windows.Threading.DispatcherPriority.Loaded);
     }
 
     /// <summary>Sets dim as a 0..1 fraction. Hidden entirely when zero.</summary>
@@ -40,6 +43,14 @@ public partial class OverlayWindow : Window
     private void OnSourceInitialized(object? sender, EventArgs e)
     {
         MakeClickThrough();
+        ApplyPlacement();
+    }
+
+    protected override void OnDpiChanged(System.Windows.DpiScale oldDpi, System.Windows.DpiScale newDpi)
+    {
+        base.OnDpiChanged(oldDpi, newDpi);
+        // WPF resizes to keep DIP size across a DPI change; reassert the exact physical
+        // rect so the overlay still covers the whole monitor.
         ApplyPlacement();
     }
 

@@ -22,6 +22,6 @@ public sealed class Profile
     /// <summary>The dim percentage actually applied to a screen right now.</summary>
     public int EffectiveDim(ScreenConfig screen)
         => (MasterOn && screen.Enabled)
-            ? Math.Clamp(MasterDim + screen.Offset, 0, AppConstants.MaxDim)
+            ? Math.Clamp(screen.Dim, 0, AppConstants.MaxDim)
             : 0;
 }

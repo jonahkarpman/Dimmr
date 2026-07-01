@@ -24,10 +24,10 @@ public sealed class ScreenRowViewModel : ViewModelBase
         set { if (_model.Enabled != value) { _model.Enabled = value; OnPropertyChanged(); _changed(); } }
     }
 
-    public int Offset
+    public int Dim
     {
-        get => _model.Offset;
-        set { var v = Math.Clamp(value, -50, 50); if (_model.Offset != v) { _model.Offset = v; OnPropertyChanged(); _changed(); } }
+        get => _model.Dim;
+        set { var v = Math.Clamp(value, 0, AppConstants.MaxDim); if (_model.Dim != v) { _model.Dim = v; OnPropertyChanged(); _changed(); } }
     }
 
     public bool AutoBounds
@@ -63,7 +63,7 @@ public sealed class ScreenRowViewModel : ViewModelBase
     public void RaiseAll()
     {
         OnPropertyChanged(nameof(Enabled));
-        OnPropertyChanged(nameof(Offset));
+        OnPropertyChanged(nameof(Dim));
         OnPropertyChanged(nameof(AutoBounds));
         OnPropertyChanged(nameof(X));
         OnPropertyChanged(nameof(Y));

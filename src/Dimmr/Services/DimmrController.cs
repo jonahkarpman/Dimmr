@@ -52,6 +52,8 @@ public sealed class DimmrController : IDisposable
 
         Profile.MasterDim = Math.Clamp(Settings.StartupDim, 0, AppConstants.MaxDim);
         Profile.MasterOn = Settings.StartupDim > 0;
+        foreach (var screen in Profile.Screens)
+            screen.Dim = Profile.MasterDim;
     }
 
     /// <summary>Adds a screen entry for any connected monitor the profile does not know yet.</summary>
@@ -69,7 +71,7 @@ public sealed class DimmrController : IDisposable
                     DeviceName = mon.DeviceName,
                     Label = $"Screen {index} ({mon.Width}x{mon.Height})",
                     Enabled = true,
-                    Offset = 0,
+                    Dim = Profile.MasterDim,
                     AutoBounds = true,
                     X = mon.X,
                     Y = mon.Y,
@@ -101,6 +103,15 @@ public sealed class DimmrController : IDisposable
     {
         Profile.MasterDim = Math.Clamp(dim, 0, AppConstants.MaxDim);
         Profile.MasterOn = Profile.MasterDim > 0;
+        foreach (var screen in Profile.Screens)
+            screen.Dim = Profile.MasterDim;
+        _overlays.Refresh();
+    }
+
+    /// <summary>Called after editing one screen's dim; unmutes so the change is visible.</summary>
+    public void ScreenEdited()
+    {
+        Profile.MasterOn = true;
         _overlays.Refresh();
     }
 

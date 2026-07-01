@@ -16,11 +16,8 @@ public sealed class ScreenConfig
     /// <summary>Whether this screen participates in dimming.</summary>
     public bool Enabled { get; set; } = true;
 
-    /// <summary>
-    /// Per-screen adjustment added to the master dim, in percent. Lets one screen be a
-    /// bit darker or lighter than the rest. Default 0.
-    /// </summary>
-    public int Offset { get; set; }
+    /// <summary>This screen's dim level as a percentage, 0 to <see cref="AppConstants.MaxDim"/>.</summary>
+    public int Dim { get; set; } = 30;
 
     /// <summary>
     /// When true, the overlay uses the monitor bounds detected at runtime. When false,

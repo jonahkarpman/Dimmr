@@ -82,12 +82,12 @@
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="Offset" VerticalAlignment="Center" Margin="0,0,8,0"
+                                            <TextBlock Text="Dim" VerticalAlignment="Center" Margin="0,0,8,0"
                                                        Foreground="{StaticResource SecondaryTextBrush}" />
-                                            <Slider Grid.Column="1" Minimum="-50" Maximum="50" Value="{Binding Offset}"
+                                            <Slider Grid.Column="1" Minimum="0" Maximum="85" Value="{Binding Dim}"
                                                     SmallChange="5" LargeChange="10" IsSnapToTickEnabled="True" TickFrequency="1"
-                                                    AutomationProperties.Name="Screen offset" />
-                                            <TextBlock Grid.Column="2" Text="{Binding Offset, StringFormat={}{0}%}"
+                                                    AutomationProperties.Name="Screen dim level" />
+                                            <TextBlock Grid.Column="2" Text="{Binding Dim, StringFormat={}{0}%}"
                                                        Width="44" TextAlignment="Right" VerticalAlignment="Center" />
                                         </Grid>
                                         <CheckBox Content="Auto-detect bounds" IsChecked="{Binding AutoBounds}"

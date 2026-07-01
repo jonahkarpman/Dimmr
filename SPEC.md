@@ -43,10 +43,12 @@ bounds override.
 - Positioned in physical pixels via SetWindowPos for exact coverage.
 
 ### 2. Master and per-screen control
-- A master switch and master dim level drive all enabled screens.
-- Each screen has an enable flag and an offset added to the master, so one screen can be a
-  bit darker or lighter.
-- Effective dim = (master on and screen enabled) ? clamp(master + offset, 0, 85) : 0.
+- Each screen has its own dim level, 0 to 85 percent (capped below 100 so a screen never
+  goes fully black), plus an enable flag.
+- The master switch mutes or unmutes all screens. The master slider is a broadcast: moving
+  it sets every enabled screen to that level and unmutes.
+- Editing a single screen's slider unmutes so the change is visible immediately.
+- Effective dim = (master on and screen enabled) ? clamp(screen dim, 0, 85) : 0.
 
 ### 3. Bounds handling
 - Each screen defaults to auto-detected bounds (PerMonitorV2 physical pixels).

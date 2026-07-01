@@ -58,7 +58,14 @@ public sealed class MainViewModel : ViewModelBase
     public int MasterDim
     {
         get => _controller.Profile.MasterDim;
-        set { _controller.SetMasterDim(value); OnPropertyChanged(); OnPropertyChanged(nameof(MasterOn)); }
+        set
+        {
+            _controller.SetMasterDim(value);
+            OnPropertyChanged();
+            OnPropertyChanged(nameof(MasterOn));
+            foreach (var screen in Screens)
+                screen.RaiseAll();
+        }
     }
 
     // ----- profiles -----
@@ -156,7 +163,7 @@ public sealed class MainViewModel : ViewModelBase
     {
         Screens.Clear();
         foreach (var screen in _controller.Profile.Screens)
-            Screens.Add(new ScreenRowViewModel(screen, () => _controller.RefreshOverlays()));
+            Screens.Add(new ScreenRowViewModel(screen, () => _controller.ScreenEdited()));
     }
 
     private void OnStateChanged()

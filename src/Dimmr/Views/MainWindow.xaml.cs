@@ -122,7 +122,7 @@ public partial class MainWindow : Window
     private void OnAnyTextInput(object sender, TextCompositionEventArgs e) => _viewModel.PlayKeystroke();
 
     // Backspace and Delete do not raise text-input events, so play the typing sound here.
-    private void OnAnyKeyDown(object sender, KeyEventArgs e)
+    private void OnAnyKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
     {
         if (e.Key == Key.Back || e.Key == Key.Delete)
             _viewModel.PlayKeystroke();

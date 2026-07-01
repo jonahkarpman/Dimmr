@@ -43,6 +43,10 @@ public sealed class DimmrController : IDisposable
         _hotkeys.Register();
 
         SystemEvents.DisplaySettingsChanged += OnDisplaysChanged;
+
+        // Keep the startup entry pointed at whichever copy is actually running.
+        if (Settings.RunAtStartup)
+            StartupManager.SetEnabled(true);
     }
 
     private void ApplyStartupDim()

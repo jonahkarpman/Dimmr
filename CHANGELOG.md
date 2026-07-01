@@ -7,6 +7,13 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.6] - 2026-07-01
+
+### Changed
+
+- New app and tray icon: a checked phosphor checkbox (a green-bordered square with a
+  filled inner square) with CRT scanlines, matching the in-app checkboxes.
+
 ## [0.4.5] - 2026-07-01
 
 ### Fixed

@@ -10,7 +10,7 @@
     <RootNamespace>Dimmr</RootNamespace>
     <AssemblyName>Dimmr</AssemblyName>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>0.4.5</Version>
+    <Version>0.4.6</Version>
     <ApplicationIcon>dimmr.ico</ApplicationIcon>
     <!-- The WPF PerMonitorV2 manifest is intentional; ignore the WinForms DPI advisory. -->
     <NoWarn>WFAC010</NoWarn>

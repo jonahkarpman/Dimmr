@@ -1,4 +1,5 @@
-# Generates dimmr.ico: a phosphor-green brightness/contrast glyph on a dark rounded tile.
+# Generates dimmr.ico: a checked phosphor checkbox (a square with a filled inner square)
+# with faint CRT scanlines, matching the in-app checkboxes.
 # Run from the repo root: pwsh -File tools/make-icon.ps1
 Add-Type -AssemblyName System.Drawing
 
@@ -8,18 +9,33 @@ $g = [System.Drawing.Graphics]::FromImage($bmp)
 $g.SmoothingMode = [System.Drawing.Drawing2D.SmoothingMode]::AntiAlias
 $g.Clear([System.Drawing.Color]::Transparent)
 
-$near = [System.Drawing.Color]::FromArgb(255, 10, 10, 10)
-$accent = [System.Drawing.Color]::FromArgb(255, 0, 255, 65)
-$phos = [System.Drawing.Color]::FromArgb(255, 51, 255, 51)
+$surface = [System.Drawing.Color]::FromArgb(255, 13, 26, 13)   # #0D1A0D box fill
+$accent  = [System.Drawing.Color]::FromArgb(255, 0, 255, 65)   # #00FF41 border + mark
 
-# Brightness/contrast glyph only, on a transparent background:
-# a circle outline with the right half filled.
-$cx = 128; $cy = 128; $r = 98
-$circle = New-Object System.Drawing.Rectangle ($cx - $r), ($cy - $r), ($r * 2), ($r * 2)
-$penC = New-Object System.Drawing.Pen $phos, 16
-$g.DrawEllipse($penC, $circle)
-$brushC = New-Object System.Drawing.SolidBrush $phos
-$g.FillPie($brushC, $circle, -90, 180)
+# Outer checkbox square (checked state): dark fill with a bright green border.
+$margin = 24
+$boxRect = New-Object System.Drawing.Rectangle $margin, $margin, ($size - 2 * $margin), ($size - 2 * $margin)
+$fillBox = New-Object System.Drawing.SolidBrush $surface
+$g.FillRectangle($fillBox, $boxRect)
+
+# Inner filled square (the check mark), centered like the in-app checkbox mark.
+$markSize = 112
+$markPos = [int](($size - $markSize) / 2)
+$fillMark = New-Object System.Drawing.SolidBrush $accent
+$g.FillRectangle($fillMark, $markPos, $markPos, $markSize, $markSize)
+
+# Faint CRT scanlines across the box interior only.
+$g.SetClip($boxRect)
+$scan = New-Object System.Drawing.SolidBrush ([System.Drawing.Color]::FromArgb(70, 0, 0, 0))
+for ($y = $margin; $y -lt ($size - $margin); $y += 10) {
+    $g.FillRectangle($scan, $margin, $y, ($size - 2 * $margin), 3)
+}
+$g.ResetClip()
+
+# Border on top so it stays crisp over the scanlines.
+$penB = New-Object System.Drawing.Pen $accent, 16
+$penB.Alignment = [System.Drawing.Drawing2D.PenAlignment]::Inset
+$g.DrawRectangle($penB, $boxRect)
 
 $g.Dispose()
 

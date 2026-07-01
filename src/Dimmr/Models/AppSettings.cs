@@ -19,5 +19,5 @@ public sealed class AppSettings
 
     public bool SoundsEnabled { get; set; }
     public bool Scanlines { get; set; } = true;
-    public bool Flicker { get; set; }
+    public bool Glow { get; set; }
 }

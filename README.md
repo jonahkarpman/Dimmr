@@ -1,6 +1,6 @@
 # Dimmr
 
-> A Pip-Boy themed multi-monitor screen dimmer for Windows
+> A phosphor CRT themed multi-monitor screen dimmer for Windows
 
 Dimmr dims your screens with a click-through overlay, per monitor, with profiles and
 global hotkeys. It was built to solve a specific problem: on Snapdragon (ARM64) laptops,
@@ -18,7 +18,7 @@ on any GPU.
 - Global hotkeys, works alongside f.lux
 - Runs in the system tray, optional launch at startup
 - Choose whether to start undimmed or at a set level
-- Pip-Boy terminal aesthetic, with accessibility built in
+- Phosphor terminal aesthetic, with accessibility built in
 
 ## Requirements
 

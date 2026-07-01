@@ -19,6 +19,7 @@ public sealed class MainViewModel : ViewModelBase
     public ICommand SaveCommand { get; }
     public ICommand NewProfileCommand { get; }
     public ICommand RefreshCommand { get; }
+    public ICommand IdentifyCommand { get; }
 
     private string _newProfileName = "";
     public string NewProfileName
@@ -40,6 +41,7 @@ public sealed class MainViewModel : ViewModelBase
             _controller.RebuildOverlays();
             RebuildScreens();
         });
+        IdentifyCommand = new RelayCommand(() => ScreenIdentifier.Flash());
 
         ReloadProfiles();
         RebuildScreens();
@@ -56,7 +58,7 @@ public sealed class MainViewModel : ViewModelBase
     public int MasterDim
     {
         get => _controller.Profile.MasterDim;
-        set { _controller.SetMasterDim(value); OnPropertyChanged(); }
+        set { _controller.SetMasterDim(value); OnPropertyChanged(); OnPropertyChanged(nameof(MasterOn)); }
     }
 
     // ----- profiles -----
@@ -107,6 +109,12 @@ public sealed class MainViewModel : ViewModelBase
     {
         get => _controller.Settings.Scanlines;
         set { _controller.Settings.Scanlines = value; _controller.SaveSettings(); OnPropertyChanged(); }
+    }
+
+    public bool Glow
+    {
+        get => _controller.Settings.Glow;
+        set { _controller.Settings.Glow = value; _controller.SaveSettings(); OnPropertyChanged(); }
     }
 
     // ----- helpers -----

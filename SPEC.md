@@ -10,7 +10,7 @@
 
 Dimmr is a Windows desktop utility that dims one or more screens using a translucent,
 click-through overlay per monitor. It supports named profiles for different physical
-setups, global hotkeys, and launch at startup. The interface uses a Pip-Boy terminal
+setups, global hotkeys, and launch at startup. The interface uses a Phosphor terminal
 aesthetic.
 
 ## Problem Statement
@@ -74,13 +74,13 @@ bounds override.
 
 ### 8. Sounds
 - A sound service with hooks for toggle and adjust actions.
-- Ships with system-sound placeholders; real Pip-Boy audio files can be added later.
+- Ships with system-sound placeholders; real Phosphor audio files can be added later.
 
 ---
 
 ## Design Language
 
-Theme: Pip-Boy terminal, matching the sibling `windowr` project.
+Theme: Phosphor terminal, matching the sibling `windowr` project.
 
 ### Color Palette
 
@@ -150,7 +150,7 @@ src/Dimmr/
 
 ## Accessibility Requirements
 
-The Pip-Boy look must not reduce usability. Target WCAG 2.1 AA where applicable.
+The Phosphor look must not reduce usability. Target WCAG 2.1 AA where applicable.
 
 - Keyboard: every control reachable and operable by keyboard, logical tab order, visible
   green focus outline, Escape and Enter behave conventionally.
@@ -184,10 +184,10 @@ The Pip-Boy look must not reduce usability. Target WCAG 2.1 AA where applicable.
 - [x] Global hotkeys
 - [x] System tray
 - [x] Startup registration and startup-dim behavior
-- [x] Pip-Boy theme and base accessibility
+- [x] Phosphor theme and base accessibility
 
 ### Phase 2 — Polish
-- [ ] Real Pip-Boy sound effects
+- [ ] Real Phosphor sound effects
 - [ ] Segmented (health-bar) slider styling
 - [ ] Visual monitor preview for editing bounds
 - [ ] Custom tray icon

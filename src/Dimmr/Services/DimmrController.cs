@@ -100,6 +100,7 @@ public sealed class DimmrController : IDisposable
     public void SetMasterDim(int dim)
     {
         Profile.MasterDim = Math.Clamp(dim, 0, AppConstants.MaxDim);
+        Profile.MasterOn = Profile.MasterDim > 0;
         _overlays.Refresh();
     }
 

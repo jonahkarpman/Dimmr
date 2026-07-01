@@ -30,8 +30,12 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="&gt; DIMMR v0.1.0_" Foreground="{StaticResource AccentBrush}"
-                           FontFamily="Consolas" FontSize="14" VerticalAlignment="Center" Margin="10,0" />
+                <TextBlock x:Name="TitleText" Text="&gt; DIMMR v0.1.0_" Foreground="{StaticResource AccentBrush}"
+                           FontFamily="Consolas" FontSize="14" VerticalAlignment="Center" Margin="10,0">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="#00FF41" BlurRadius="10" ShadowDepth="0" Opacity="0.8" />
+                    </TextBlock.Effect>
+                </TextBlock>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <Button Content="[_]" Click="OnMinimize" MinHeight="0" Padding="8,2" Margin="0"
                             AutomationProperties.Name="Minimize" />
@@ -62,6 +66,8 @@
 
                     <!-- Screens -->
                     <TextBlock Text="SCREENS" Style="{StaticResource HeaderText}" />
+                    <Button Content="IDENTIFY SCREENS" Command="{Binding IdentifyCommand}" Margin="0,0,0,8"
+                            AutomationProperties.Name="Identify screens" />
                     <ItemsControl ItemsSource="{Binding Screens}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -154,6 +160,8 @@
                               AutomationProperties.Name="Sounds enabled" />
                     <CheckBox Content="Scanlines" IsChecked="{Binding Scanlines}" Margin="0,6,0,0"
                               AutomationProperties.Name="Scanlines" />
+                    <CheckBox Content="Glow (breathing)" IsChecked="{Binding Glow}" Margin="0,6,0,0"
+                              AutomationProperties.Name="Breathing glow" />
 
                 </StackPanel>
             </ScrollViewer>

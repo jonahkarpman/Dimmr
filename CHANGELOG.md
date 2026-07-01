@@ -22,6 +22,6 @@ Initial working version.
 - System tray icon with settings, dimming toggle, profile switch, startup toggle, and exit.
 - Launch at startup via the HKCU Run key, with a "reset dim on startup" option and a
   configurable startup level (defaults to undimmed).
-- Pip-Boy terminal theme (phosphor green on near-black) with keyboard navigation, focus
+- Phosphor terminal theme (green on near-black) with keyboard navigation, focus
   visuals, screen-reader names, and a scanlines toggle.
 - Placeholder sound hooks (system sounds) ready for real audio files later.

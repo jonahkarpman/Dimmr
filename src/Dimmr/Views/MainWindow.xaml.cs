@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Effects;
 using Dimmr.ViewModels;
 
 namespace Dimmr.Views;
@@ -12,6 +15,7 @@ namespace Dimmr.Views;
 public partial class MainWindow : Window
 {
     private readonly MainViewModel _viewModel;
+    private Style? _headerStyle;
 
     /// <summary>Set by the app on real exit so closing tears down instead of hiding.</summary>
     public bool ForceClose { get; set; }
@@ -24,7 +28,11 @@ public partial class MainWindow : Window
         TitleBar.MouseLeftButtonDown += OnTitleBarDrag;
 
         _viewModel.PropertyChanged += OnViewModelPropertyChanged;
+        _headerStyle = TryFindResource("HeaderText") as Style;
         Loaded += (_, _) => UpdateGlow();
+        // Screen boxes are generated from a template, so re-apply the glow when they change.
+        _viewModel.Screens.CollectionChanged += (_, _) =>
+            Dispatcher.BeginInvoke(new Action(UpdateGlow), System.Windows.Threading.DispatcherPriority.Loaded);
 
         // Global UI sound wiring.
         AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OnAnyButtonClick), true);
@@ -48,6 +56,22 @@ public partial class MainWindow : Window
     {
         // Respect the Windows "reduce motion" setting.
         var on = _viewModel.Glow && SystemParameters.ClientAreaAnimation;
+
+        // Title text breathes its opacity.
+        BreatheOpacity(TitleText, on);
+
+        // Section headings breathe their opacity; screen boxes breathe a green glow.
+        foreach (var obj in EnumerateVisualTree(this))
+        {
+            if (obj is TextBlock tb && _headerStyle != null && ReferenceEquals(tb.Style, _headerStyle))
+                BreatheOpacity(tb, on);
+            else if (obj is Border b && (b.Tag as string) == "glowbox" && b.Effect is DropShadowEffect dse)
+                BreatheGlow(dse, on);
+        }
+    }
+
+    private static void BreatheOpacity(UIElement element, bool on)
+    {
         if (on)
         {
             var animation = new DoubleAnimation(0.55, 1.0, new Duration(TimeSpan.FromSeconds(1.8)))
@@ -55,12 +79,42 @@ public partial class MainWindow : Window
                 AutoReverse = true,
                 RepeatBehavior = RepeatBehavior.Forever
             };
-            TitleText.BeginAnimation(OpacityProperty, animation);
+            element.BeginAnimation(OpacityProperty, animation);
         }
         else
         {
-            TitleText.BeginAnimation(OpacityProperty, null);
-            TitleText.Opacity = 1.0;
+            element.BeginAnimation(OpacityProperty, null);
+            element.Opacity = 1.0;
+        }
+    }
+
+    private static void BreatheGlow(DropShadowEffect effect, bool on)
+    {
+        if (on)
+        {
+            var animation = new DoubleAnimation(0.0, 0.7, new Duration(TimeSpan.FromSeconds(1.8)))
+            {
+                AutoReverse = true,
+                RepeatBehavior = RepeatBehavior.Forever
+            };
+            effect.BeginAnimation(DropShadowEffect.OpacityProperty, animation);
+        }
+        else
+        {
+            effect.BeginAnimation(DropShadowEffect.OpacityProperty, null);
+            effect.Opacity = 0.0;
+        }
+    }
+
+    private static IEnumerable<DependencyObject> EnumerateVisualTree(DependencyObject root)
+    {
+        var count = VisualTreeHelper.GetChildrenCount(root);
+        for (var i = 0; i < count; i++)
+        {
+            var child = VisualTreeHelper.GetChild(root, i);
+            yield return child;
+            foreach (var descendant in EnumerateVisualTree(child))
+                yield return descendant;
         }
     }
 

@@ -7,6 +7,18 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.6] - 2026-07-01
+
+### Changed
+
+- The breathing glow now also pulses the section headings and casts a soft green glow on
+  the per-screen boxes, not just the title. Still respects the Reduce Motion setting.
+
+### Fixed
+
+- The top-right close button `[X]` is now amber, matching the other destructive controls
+  (it had been rendering green).
+
 ## [0.3.5] - 2026-07-01
 
 ### Fixed

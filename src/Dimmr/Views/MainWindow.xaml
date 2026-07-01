@@ -45,8 +45,10 @@
                     </Button>
                     <Button Content="[_]" Click="OnMinimize" MinHeight="0" Padding="8,2" Margin="2,0,0,0"
                             AutomationProperties.Name="Minimize" />
-                    <Button Content="[X]" Click="OnHide" MinHeight="0" Padding="8,2" Margin="2,0,4,0"
-                            AutomationProperties.Name="Close to tray" />
+                    <Button Click="OnHide" MinHeight="0" Padding="8,2" Margin="2,0,4,0"
+                            AutomationProperties.Name="Close to tray">
+                        <TextBlock Text="[X]" Foreground="{StaticResource DangerBrush}" FontFamily="Consolas" />
+                    </Button>
                 </StackPanel>
             </Grid>
 
@@ -67,7 +69,10 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Border BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
-                                        Margin="0,0,0,8" Padding="8">
+                                        Margin="0,0,0,8" Padding="8" Tag="glowbox">
+                                    <Border.Effect>
+                                        <DropShadowEffect Color="#00FF41" BlurRadius="8" ShadowDepth="0" Opacity="0" />
+                                    </Border.Effect>
                                     <StackPanel>
                                         <CheckBox Content="{Binding Label}" IsChecked="{Binding Enabled}"
                                                   AutomationProperties.Name="Screen enabled" />

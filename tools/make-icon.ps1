@@ -12,25 +12,11 @@ $near = [System.Drawing.Color]::FromArgb(255, 10, 10, 10)
 $accent = [System.Drawing.Color]::FromArgb(255, 0, 255, 65)
 $phos = [System.Drawing.Color]::FromArgb(255, 51, 255, 51)
 
-# Rounded background tile
-$rect = New-Object System.Drawing.Rectangle 10, 10, 236, 236
-$d = 96
-$path = New-Object System.Drawing.Drawing2D.GraphicsPath
-$path.AddArc($rect.X, $rect.Y, $d, $d, 180, 90)
-$path.AddArc(($rect.Right - $d), $rect.Y, $d, $d, 270, 90)
-$path.AddArc(($rect.Right - $d), ($rect.Bottom - $d), $d, $d, 0, 90)
-$path.AddArc($rect.X, ($rect.Bottom - $d), $d, $d, 90, 90)
-$path.CloseFigure()
-
-$brushBg = New-Object System.Drawing.SolidBrush $near
-$g.FillPath($brushBg, $path)
-$penBorder = New-Object System.Drawing.Pen $accent, 8
-$g.DrawPath($penBorder, $path)
-
-# Brightness/contrast circle: outline plus filled right half
-$cx = 128; $cy = 128; $r = 66
+# Brightness/contrast glyph only, on a transparent background:
+# a circle outline with the right half filled.
+$cx = 128; $cy = 128; $r = 98
 $circle = New-Object System.Drawing.Rectangle ($cx - $r), ($cy - $r), ($r * 2), ($r * 2)
-$penC = New-Object System.Drawing.Pen $phos, 12
+$penC = New-Object System.Drawing.Pen $phos, 16
 $g.DrawEllipse($penC, $circle)
 $brushC = New-Object System.Drawing.SolidBrush $phos
 $g.FillPie($brushC, $circle, -90, 180)

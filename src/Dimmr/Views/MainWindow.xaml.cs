@@ -69,6 +69,13 @@ public partial class MainWindow : Window
 
     private void OnSettingsPanelClick(object sender, MouseButtonEventArgs e) => e.Handled = true;
 
+    private void OnDeleteProfile(object sender, RoutedEventArgs e)
+    {
+        var name = _viewModel.SelectedProfile;
+        if (ConfirmDialog.Show(this, "CONFIRM DELETION", $"TERMINATE PROFILE: {name}?"))
+            _viewModel.DeleteSelected();
+    }
+
     protected override void OnClosing(CancelEventArgs e)
     {
         if (!ForceClose)

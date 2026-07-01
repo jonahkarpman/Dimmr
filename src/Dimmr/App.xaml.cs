@@ -41,7 +41,7 @@ public partial class App : System.Windows.Application
         {
             Icon = LoadIcon(),
             Visible = true,
-            Text = "Dimmr"
+            Text = "dimmr"
         };
 
         _tray.MouseClick += (_, e) =>

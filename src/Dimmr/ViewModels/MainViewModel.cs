@@ -33,7 +33,7 @@ public sealed class MainViewModel : ViewModelBase
         _controller = controller;
         _controller.StateChanged += OnStateChanged;
 
-        SaveCommand = new RelayCommand(() => _controller.SaveCurrent());
+        SaveCommand = new RelayCommand(() => { _controller.SaveCurrent(); _controller.PlayClick(); });
         SaveAsCommand = new RelayCommand(SaveAs);
         RefreshCommand = new RelayCommand(() =>
         {
@@ -150,7 +150,26 @@ public sealed class MainViewModel : ViewModelBase
         OnPropertyChanged(nameof(SelectedProfile));
         OnPropertyChanged(nameof(MasterOn));
         OnPropertyChanged(nameof(MasterDim));
+        RaiseSelectionLater();
     }
+
+    public void DeleteSelected()
+    {
+        _controller.DeleteProfile(_controller.Profile.Name);
+        ReloadProfiles();
+        RebuildScreens();
+        OnPropertyChanged(nameof(SelectedProfile));
+        OnPropertyChanged(nameof(MasterOn));
+        OnPropertyChanged(nameof(MasterDim));
+        RaiseSelectionLater();
+    }
+
+    // Re-raise the selection after the Profiles collection settles so the ComboBox
+    // reliably shows the active profile.
+    private void RaiseSelectionLater()
+        => Application.Current?.Dispatcher.BeginInvoke(
+            new System.Action(() => OnPropertyChanged(nameof(SelectedProfile))),
+            System.Windows.Threading.DispatcherPriority.Background);
 
     private void ReloadProfiles()
     {

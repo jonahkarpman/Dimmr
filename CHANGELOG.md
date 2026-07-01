@@ -7,10 +7,23 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Delete profile via a `[x]` button with a confirmation dialog ("CONFIRM DELETION",
+  "[ ABORT ] / [ AFFIRM ]") and a Fallout scrap sound on confirm.
+- Fallout UI sounds wired from bundled .wav files (click, toggle, adjust, scrap, start),
+  gated by the Sounds toggle.
+
+### Changed
+
+- Profile controls are now compact symbol buttons next to their fields: `[+]` new profile
+  from current settings, save (check) to the selected profile, `[x]` delete.
+- Brand shown in lowercase ("dimmr") in the title bar, window title, and tray tooltip.
+
 ### Fixed
 
-- Creating a profile now clones the current live settings under the new name (Save As) and
-  selects it, instead of making a blank, muted profile. The button is labelled "Save As".
+- Creating a profile clones the current live settings instead of a blank, muted profile,
+  and now reliably selects the new profile.
 
 ## [0.1.0] - 2026-06-30
 

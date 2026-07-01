@@ -185,8 +185,26 @@ public sealed class DimmrController : IDisposable
         SyncMonitors();
         SaveCurrent();
         _overlays.Apply(Profile);
+        _sounds.Start();
         StateChanged?.Invoke();
     }
+
+    public void DeleteProfile(string name)
+    {
+        _profiles.DeleteProfile(name);
+        _sounds.Scrap();
+
+        var remaining = _profiles.ListProfileNames();
+        var next = remaining.FirstOrDefault() ?? "default";
+        Profile = _profiles.LoadProfile(next);
+        Settings.ActiveProfile = next;
+        SyncMonitors();
+        SaveCurrent();
+        _overlays.Apply(Profile);
+        StateChanged?.Invoke();
+    }
+
+    public void PlayClick() => _sounds.Click();
 
     // ----- hotkey handlers -----
 
@@ -223,5 +241,6 @@ public sealed class DimmrController : IDisposable
         try { SaveCurrent(); } catch { /* best effort on shutdown */ }
         _overlays.Clear();
         _hotkeys.Dispose();
+        _sounds.Dispose();
     }
 }

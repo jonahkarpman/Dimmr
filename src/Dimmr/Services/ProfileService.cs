@@ -74,5 +74,12 @@ public sealed class ProfileService
     public void SaveProfile(Profile profile)
         => File.WriteAllText(ProfilePath(profile.Name), JsonSerializer.Serialize(profile, JsonOptions));
 
+    public void DeleteProfile(string name)
+    {
+        var path = ProfilePath(name);
+        if (File.Exists(path))
+            File.Delete(path);
+    }
+
     private string ProfilePath(string name) => Path.Combine(_profilesDir, name + ".json");
 }

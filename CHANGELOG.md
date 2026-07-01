@@ -7,6 +7,19 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-07-01
+
+### Added
+
+- Re-selecting the already-active profile in the dropdown now reverts it to its last saved
+  state (discards unsaved slider edits) and plays the click sound. Before, you had to
+  switch to another profile and back.
+
+### Fixed
+
+- The delete confirmation's `[ AFFIRM ]` button now uses the delete color (white in amber),
+  matching the delete and close buttons.
+
 ## [0.4.6] - 2026-07-01
 
 ### Changed

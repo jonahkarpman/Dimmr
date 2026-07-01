@@ -130,7 +130,13 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <ComboBox ItemsSource="{Binding Profiles}" SelectedItem="{Binding SelectedProfile}"
-                                  AutomationProperties.Name="Active profile" />
+                                  AutomationProperties.Name="Active profile">
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem" BasedOn="{StaticResource {x:Type ComboBoxItem}}">
+                                    <EventSetter Event="PreviewMouseLeftButtonUp" Handler="OnProfileItemClick" />
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+                        </ComboBox>
                         <Button Grid.Column="1" Command="{Binding SaveCommand}" Margin="6,0,0,0"
                                 Width="34" Height="30" MinHeight="0" Padding="0"
                                 ToolTip="Save changes to the selected profile" AutomationProperties.Name="Save profile">

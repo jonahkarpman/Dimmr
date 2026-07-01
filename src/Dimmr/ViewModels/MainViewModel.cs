@@ -88,6 +88,17 @@ public sealed class MainViewModel : ViewModelBase
         }
     }
 
+    /// <summary>Re-selecting the current profile reverts it to its last saved state.</summary>
+    public void RevertCurrentProfile()
+    {
+        _controller.RevertProfile();
+        RebuildScreens();
+        OnPropertyChanged(nameof(SelectedProfile));
+        OnPropertyChanged(nameof(MasterOn));
+        OnPropertyChanged(nameof(MasterDim));
+        _controller.PlayClick();
+    }
+
     // ----- startup / settings -----
 
     public bool RunAtStartup

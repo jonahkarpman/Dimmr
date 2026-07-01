@@ -9,5 +9,5 @@ public static class AppConstants
     public const int DimStep = 5;
 
     public const string AppName = "Dimmr";
-    public const string Version = "0.4.6";
+    public const string Version = "0.5.0";
 }

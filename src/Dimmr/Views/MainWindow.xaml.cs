@@ -70,6 +70,17 @@ public partial class MainWindow : Window
             _viewModel.SelectedColorName = tag;
     }
 
+    // Re-clicking the already-selected profile reverts it to its saved state.
+    private void OnProfileItemClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (sender is System.Windows.Controls.ComboBoxItem item
+            && item.DataContext is string name
+            && name == _viewModel.SelectedProfile)
+        {
+            _viewModel.RevertCurrentProfile();
+        }
+    }
+
     private void ApplyGlowColor()
     {
         if (TitleText.Effect is DropShadowEffect effect)

@@ -166,6 +166,15 @@ public sealed class DimmrController : IDisposable
         StateChanged?.Invoke();
     }
 
+    /// <summary>Reloads the current profile from disk, discarding any unsaved edits.</summary>
+    public void RevertProfile()
+    {
+        Profile = _profiles.LoadProfile(Profile.Name);
+        SyncMonitors();
+        _overlays.Apply(Profile);
+        StateChanged?.Invoke();
+    }
+
     public void SaveAsProfile(string name)
     {
         // Clone the current live state under a new name. The previous profile keeps its

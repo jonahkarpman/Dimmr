@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
+using Dimmr.Services;
 using Dimmr.ViewModels;
 
 namespace Dimmr.Views;
@@ -29,7 +30,10 @@ public partial class MainWindow : Window
 
         _viewModel.PropertyChanged += OnViewModelPropertyChanged;
         _headerStyle = TryFindResource("HeaderText") as Style;
-        Loaded += (_, _) => UpdateGlow();
+        Loaded += OnLoaded;
+        _viewModel.ColorChanged += () =>
+            Dispatcher.BeginInvoke(new Action(() => { ApplyGlowColor(); UpdateGlow(); }),
+                System.Windows.Threading.DispatcherPriority.Background);
         // Screen boxes are generated from a template, so re-apply the glow when they change.
         _viewModel.Screens.CollectionChanged += (_, _) =>
             Dispatcher.BeginInvoke(new Action(UpdateGlow), System.Windows.Threading.DispatcherPriority.Loaded);
@@ -50,6 +54,33 @@ public partial class MainWindow : Window
     {
         if (e.PropertyName == nameof(MainViewModel.Glow))
             UpdateGlow();
+    }
+
+    private void OnLoaded(object sender, RoutedEventArgs e)
+    {
+        var amber = string.Equals(_viewModel.SelectedColorName, "Amber", StringComparison.OrdinalIgnoreCase);
+        (amber ? SwatchAmber : SwatchGreen).IsChecked = true;
+        ApplyGlowColor();
+        UpdateGlow();
+    }
+
+    private void OnSelectColor(object sender, RoutedEventArgs e)
+    {
+        if (sender is System.Windows.Controls.RadioButton rb && rb.Tag is string tag)
+            _viewModel.SelectedColorName = tag;
+    }
+
+    private void ApplyGlowColor()
+    {
+        if (TitleText.Effect is DropShadowEffect effect)
+        {
+            if (effect.IsFrozen)
+            {
+                effect = effect.Clone();
+                TitleText.Effect = effect;
+            }
+            effect.Color = Palette.GlowColor;
+        }
     }
 
     private void UpdateGlow()
@@ -73,6 +104,7 @@ public partial class MainWindow : Window
                     dse = dse.Clone();
                     b.Effect = dse;
                 }
+                dse.Color = Palette.GlowColor;
                 BreatheGlow(dse, on);
             }
         }

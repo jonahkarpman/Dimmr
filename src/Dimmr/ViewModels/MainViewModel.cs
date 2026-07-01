@@ -126,6 +126,24 @@ public sealed class MainViewModel : ViewModelBase
         set { _controller.Settings.Glow = value; _controller.SaveSettings(); OnPropertyChanged(); }
     }
 
+    /// <summary>Raised after the color scheme changes, so the view can recolor its glow.</summary>
+    public event System.Action? ColorChanged;
+
+    public string SelectedColorName
+    {
+        get => _controller.Settings.ColorScheme;
+        set
+        {
+            if (string.Equals(_controller.Settings.ColorScheme, value, System.StringComparison.OrdinalIgnoreCase))
+                return;
+            _controller.Settings.ColorScheme = value;
+            _controller.SaveSettings();
+            Palette.Apply(value);
+            ColorChanged?.Invoke();
+            OnPropertyChanged();
+        }
+    }
+
     public bool Hum
     {
         get => _controller.Settings.Hum;

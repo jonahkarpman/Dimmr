@@ -204,6 +204,26 @@
                                   AutomationProperties.Name="Scanlines" />
                         <CheckBox Content="Glow (breathing)" IsChecked="{Binding Glow}" Margin="0,6,0,0"
                                   AutomationProperties.Name="Breathing glow" />
+
+                        <TextBlock Text="COLOR" Style="{StaticResource HeaderText}" />
+                        <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                            <StackPanel Margin="0,0,14,0">
+                                <RadioButton x:Name="SwatchGreen" Style="{StaticResource ColorSwatch}"
+                                             GroupName="ColorScheme" Tag="Green" Background="#33FF33"
+                                             Checked="OnSelectColor" AutomationProperties.Name="Green color"
+                                             ToolTip="Phosphor green" />
+                                <TextBlock Text="GREEN" Foreground="#33FF33" FontFamily="Consolas" FontSize="11"
+                                           HorizontalAlignment="Center" Margin="0,3,0,0" />
+                            </StackPanel>
+                            <StackPanel>
+                                <RadioButton x:Name="SwatchAmber" Style="{StaticResource ColorSwatch}"
+                                             GroupName="ColorScheme" Tag="Amber" Background="#FFB642"
+                                             Checked="OnSelectColor" AutomationProperties.Name="Amber color"
+                                             ToolTip="New Vegas amber" />
+                                <TextBlock Text="AMBER" Foreground="#FFB642" FontFamily="Consolas" FontSize="11"
+                                           HorizontalAlignment="Center" Margin="0,3,0,0" />
+                            </StackPanel>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
             </Grid>

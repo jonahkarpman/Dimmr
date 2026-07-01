@@ -22,4 +22,7 @@ public sealed class AppSettings
     public bool Hum { get; set; }
     public bool Scanlines { get; set; } = true;
     public bool Glow { get; set; }
+
+    /// <summary>Color scheme: "Green" (phosphor) or "Amber" (New Vegas).</summary>
+    public string ColorScheme { get; set; } = "Green";
 }

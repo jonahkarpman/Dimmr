@@ -23,6 +23,7 @@ public partial class App : System.Windows.Application
 
         _controller = new DimmrController();
         _controller.Start();
+        Palette.Apply(_controller.Settings.ColorScheme);
 
         _viewModel = new MainViewModel(_controller);
         _window = new MainWindow(_viewModel);

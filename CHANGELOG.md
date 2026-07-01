@@ -7,6 +7,15 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-07-01
+
+### Added
+
+- A COLOR picker in Settings with two clickable swatches: Phosphor Green (default) and
+  New Vegas Amber (`#FFB642`). Selecting one recolors the whole interface live, including
+  the glow. The choice is saved. In the amber scheme the destructive controls use a hot
+  amber (`#FFE0A0`) so they stay distinct.
+
 ## [0.3.7] - 2026-07-01
 
 ### Fixed

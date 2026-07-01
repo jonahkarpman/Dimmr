@@ -37,7 +37,9 @@
                     </TextBlock.Effect>
                 </TextBlock>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <Button Content="[_]" Click="OnMinimize" MinHeight="0" Padding="8,2" Margin="0"
+                    <Button Content="&#x2699;" FontFamily="Segoe UI Symbol" Click="OnOpenSettings" MinHeight="0" Padding="8,2" Margin="0"
+                            AutomationProperties.Name="Settings" />
+                    <Button Content="[_]" Click="OnMinimize" MinHeight="0" Padding="8,2" Margin="2,0,0,0"
                             AutomationProperties.Name="Minimize" />
                     <Button Content="[X]" Click="OnHide" MinHeight="0" Padding="8,2" Margin="2,0,4,0"
                             AutomationProperties.Name="Close to tray" />
@@ -140,29 +142,6 @@
                         <Button Content="REFRESH MONITORS" Command="{Binding RefreshCommand}" Margin="6,0,0,0" />
                     </StackPanel>
 
-                    <!-- Startup -->
-                    <TextBlock Text="STARTUP" Style="{StaticResource HeaderText}" />
-                    <CheckBox Content="Run at startup" IsChecked="{Binding RunAtStartup}"
-                              AutomationProperties.Name="Run at startup" />
-                    <CheckBox Content="Reset dim on startup" IsChecked="{Binding ResetDimOnStartup}"
-                              Margin="0,6,0,0" AutomationProperties.Name="Reset dim on startup" />
-                    <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-                        <TextBlock Text="Start at" VerticalAlignment="Center" Margin="0,0,8,0"
-                                   Foreground="{StaticResource SecondaryTextBrush}" />
-                        <ComboBox ItemsSource="{Binding StartupDimOptions}" SelectedItem="{Binding StartupDim}"
-                                  Width="80" AutomationProperties.Name="Startup dim value" />
-                        <TextBlock Text="%" VerticalAlignment="Center" Margin="4,0,0,0" />
-                    </StackPanel>
-
-                    <!-- Options -->
-                    <TextBlock Text="OPTIONS" Style="{StaticResource HeaderText}" />
-                    <CheckBox Content="Sounds" IsChecked="{Binding SoundsEnabled}"
-                              AutomationProperties.Name="Sounds enabled" />
-                    <CheckBox Content="Scanlines" IsChecked="{Binding Scanlines}" Margin="0,6,0,0"
-                              AutomationProperties.Name="Scanlines" />
-                    <CheckBox Content="Glow (breathing)" IsChecked="{Binding Glow}" Margin="0,6,0,0"
-                              AutomationProperties.Name="Breathing glow" />
-
                 </StackPanel>
             </ScrollViewer>
 
@@ -171,6 +150,43 @@
                 <TextBlock Foreground="{StaticResource SecondaryTextBrush}" FontSize="11"
                            Text="Win+Shift+D toggle  .  Alt+PgUp brighter  .  Alt+PgDn dimmer" />
             </Border>
+
+            <!-- Settings overlay -->
+            <Grid x:Name="SettingsOverlay" Grid.RowSpan="3" Background="#C0000000"
+                  Visibility="Collapsed" MouseLeftButtonDown="OnSettingsBackdrop">
+                <Border Width="320" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Background="{StaticResource BackgroundBrush}" BorderBrush="{StaticResource AccentBrush}"
+                        BorderThickness="1" Padding="16" MouseLeftButtonDown="OnSettingsPanelClick">
+                    <StackPanel>
+                        <Grid>
+                            <TextBlock Text="SETTINGS" Style="{StaticResource HeaderText}" Margin="0" VerticalAlignment="Center" />
+                            <Button Content="[X]" Click="OnCloseSettings" HorizontalAlignment="Right" MinHeight="0" Padding="8,2"
+                                    AutomationProperties.Name="Close settings" />
+                        </Grid>
+
+                        <TextBlock Text="STARTUP" Style="{StaticResource HeaderText}" />
+                        <CheckBox Content="Run at startup" IsChecked="{Binding RunAtStartup}"
+                                  AutomationProperties.Name="Run at startup" />
+                        <CheckBox Content="Reset dim on startup" IsChecked="{Binding ResetDimOnStartup}"
+                                  Margin="0,6,0,0" AutomationProperties.Name="Reset dim on startup" />
+                        <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
+                            <TextBlock Text="Start at" VerticalAlignment="Center" Margin="0,0,8,0"
+                                       Foreground="{StaticResource SecondaryTextBrush}" />
+                            <ComboBox ItemsSource="{Binding StartupDimOptions}" SelectedItem="{Binding StartupDim}"
+                                      Width="80" AutomationProperties.Name="Startup dim value" />
+                            <TextBlock Text="%" VerticalAlignment="Center" Margin="4,0,0,0" />
+                        </StackPanel>
+
+                        <TextBlock Text="OPTIONS" Style="{StaticResource HeaderText}" />
+                        <CheckBox Content="Sounds" IsChecked="{Binding SoundsEnabled}"
+                                  AutomationProperties.Name="Sounds enabled" />
+                        <CheckBox Content="Scanlines" IsChecked="{Binding Scanlines}" Margin="0,6,0,0"
+                                  AutomationProperties.Name="Scanlines" />
+                        <CheckBox Content="Glow (breathing)" IsChecked="{Binding Glow}" Margin="0,6,0,0"
+                                  AutomationProperties.Name="Breathing glow" />
+                    </StackPanel>
+                </Border>
+            </Grid>
         </Grid>
     </Border>
 </Window>

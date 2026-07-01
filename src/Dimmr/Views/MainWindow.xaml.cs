@@ -61,6 +61,14 @@ public partial class MainWindow : Window
 
     private void OnHide(object sender, RoutedEventArgs e) => Hide();
 
+    private void OnOpenSettings(object sender, RoutedEventArgs e) => SettingsOverlay.Visibility = Visibility.Visible;
+
+    private void OnCloseSettings(object sender, RoutedEventArgs e) => SettingsOverlay.Visibility = Visibility.Collapsed;
+
+    private void OnSettingsBackdrop(object sender, MouseButtonEventArgs e) => SettingsOverlay.Visibility = Visibility.Collapsed;
+
+    private void OnSettingsPanelClick(object sender, MouseButtonEventArgs e) => e.Handled = true;
+
     protected override void OnClosing(CancelEventArgs e)
     {
         if (!ForceClose)

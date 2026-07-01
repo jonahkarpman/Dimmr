@@ -27,6 +27,8 @@ public partial class App : System.Windows.Application
 
         _viewModel = new MainViewModel(_controller);
         _window = new MainWindow(_viewModel);
+        // Register the window so the dim overlays keep it above the dim (it is not dimmed).
+        _controller.SetExcludedWindow(new System.Windows.Interop.WindowInteropHelper(_window).EnsureHandle());
         SetWindowIcon();
 
         SetupTray();

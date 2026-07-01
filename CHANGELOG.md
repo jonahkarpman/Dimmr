@@ -7,6 +7,14 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-07-01
+
+### Added
+
+- The DIMMR window now stays above the dim while dimming is on, so it stays readable even
+  at high dim levels instead of being dimmed along with everything else. When dimming is
+  off, the window behaves like a normal (non-topmost) window.
+
 ## [0.5.0] - 2026-07-01
 
 ### Added

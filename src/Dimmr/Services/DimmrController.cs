@@ -140,6 +140,9 @@ public sealed class DimmrController : IDisposable
 
     public void SaveSettings() => _profiles.SaveSettings(Settings);
 
+    /// <summary>Registers the app window so the dim overlays keep it above the dim.</summary>
+    public void SetExcludedWindow(IntPtr handle) => _overlays.ExcludedWindow = handle;
+
     public void SaveCurrent()
     {
         _profiles.SaveProfile(Profile);

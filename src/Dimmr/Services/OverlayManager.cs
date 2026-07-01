@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
+using System.Windows.Threading;
+using Dimmr.Interop;
 using Dimmr.Models;
 using Dimmr.Views;
 
@@ -32,12 +36,27 @@ public sealed class OverlayManager
     /// <summary>Global on/off gate; when false, all overlays are clear.</summary>
     public bool DimmingOn { get; set; } = true;
 
+    /// <summary>The app's own window, kept above the dim so it stays readable.</summary>
+    public IntPtr ExcludedWindow { get; set; }
+
     public void Refresh()
     {
         if (_profile is null)
             return;
         foreach (var entry in _overlays.Values)
             entry.Window.SetDim(DimmingOn ? _profile.EffectiveDim(entry.Config) / 100.0 : 0.0);
+        RaiseExcluded();
+    }
+
+    // Keep the app window above the overlays while dimming, so it is not dimmed itself.
+    private void RaiseExcluded()
+    {
+        if (ExcludedWindow == IntPtr.Zero)
+            return;
+        var insertAfter = DimmingOn ? NativeMethods.HWND_TOPMOST : NativeMethods.HWND_NOTOPMOST;
+        NativeMethods.SetWindowPos(
+            ExcludedWindow, insertAfter, 0, 0, 0, 0,
+            NativeMethods.SWP_NOMOVE | NativeMethods.SWP_NOSIZE | NativeMethods.SWP_NOACTIVATE);
     }
 
     private void Reconcile()
@@ -92,6 +111,9 @@ public sealed class OverlayManager
         }
 
         Refresh();
+
+        // Overlays reassert topmost after layout settles, so re-raise the app window after.
+        Application.Current?.Dispatcher.BeginInvoke(new Action(RaiseExcluded), DispatcherPriority.Background);
     }
 
     public void Clear()

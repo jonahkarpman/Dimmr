@@ -9,7 +9,7 @@ namespace Dimmr.Models;
 /// </summary>
 public sealed class Profile
 {
-    public string Name { get; set; } = "default";
+    public string Name { get; set; } = "DEFAULT";
 
     /// <summary>Master switch. When on, all enabled screens are dimmed.</summary>
     public bool MasterOn { get; set; }

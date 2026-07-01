@@ -15,15 +15,19 @@ project uses [Semantic Versioning](https://semver.org/).
   checkboxes, keystroke on typing, VATS in/out on opening/closing settings, start on new
   profile, scrap on delete, plus a looping ambient hum while the window is focused. All
   gated by the Sounds toggle; the hum has its own "Ambient hum" toggle.
+- Sounds also on selecting a profile, opening a dropdown, and moving a slider (throttled).
 
 ### Changed
 
 - Profile controls are now compact symbol buttons next to their fields: `[+]` new profile
   from current settings, save (check) to the selected profile, `[x]` delete.
-- Brand shown in lowercase ("dimmr") in the title bar, window title, and tray tooltip.
+- Brand shown in uppercase ("DIMMR") in the title bar, window title, and tray tooltip.
+  The auto-created fallback profile is named "DEFAULT".
 
 ### Fixed
 
+- Switching profiles no longer briefly turns all dimming off; overlays are reused and just
+  update their opacity instead of being recreated.
 - Tooltips now use the dark terminal styling (green on near-black) instead of the system
   white background.
 - Creating a profile clones the current live settings instead of a blank, muted profile,

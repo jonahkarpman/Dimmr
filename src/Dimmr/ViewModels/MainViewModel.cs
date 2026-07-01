@@ -78,6 +78,7 @@ public sealed class MainViewModel : ViewModelBase
             if (!string.IsNullOrEmpty(value) && value != _controller.Profile.Name)
             {
                 _controller.SwitchProfile(value);
+                _controller.PlayClick();
                 RebuildScreens();
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(MasterOn));
@@ -184,6 +185,7 @@ public sealed class MainViewModel : ViewModelBase
     public void PlayKeystroke() => _controller.PlayKeystroke();
     public void StartHum() => _controller.StartHum();
     public void StopHum() => _controller.StopHum();
+    public void PlaySliderTick() => _controller.PlayAdjust();
 
     private void ReloadProfiles()
     {

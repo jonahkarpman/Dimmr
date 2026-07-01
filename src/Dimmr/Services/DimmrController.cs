@@ -195,7 +195,7 @@ public sealed class DimmrController : IDisposable
         _sounds.Scrap();
 
         var remaining = _profiles.ListProfileNames();
-        var next = remaining.FirstOrDefault() ?? "default";
+        var next = remaining.FirstOrDefault() ?? "DEFAULT";
         Profile = _profiles.LoadProfile(next);
         Settings.ActiveProfile = next;
         SyncMonitors();
@@ -211,6 +211,7 @@ public sealed class DimmrController : IDisposable
     public void PlayKeystroke() => _sounds.Keystroke();
     public void StartHum() => _sounds.StartHum();
     public void StopHum() => _sounds.StopHum();
+    public void PlayAdjust() => _sounds.Adjust();
 
     // ----- hotkey handlers -----
 

@@ -30,6 +30,7 @@ public partial class MainWindow : Window
         AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(OnAnyButtonClick), true);
         AddHandler(ToggleButton.CheckedEvent, new RoutedEventHandler(OnAnyToggle), true);
         AddHandler(ToggleButton.UncheckedEvent, new RoutedEventHandler(OnAnyToggle), true);
+        AddHandler(Slider.ValueChangedEvent, new RoutedPropertyChangedEventHandler<double>(OnAnySliderChanged), true);
         PreviewTextInput += OnAnyTextInput;
         Activated += (_, _) => _viewModel.StartHum();
         Deactivated += (_, _) => _viewModel.StopHum();
@@ -100,8 +101,8 @@ public partial class MainWindow : Window
 
     private void OnAnyButtonClick(object sender, RoutedEventArgs e)
     {
-        if (e.Source is ToggleButton)
-            return; // checkboxes and combo toggles handled by the toggle sound
+        if (e.Source is CheckBox)
+            return; // checkboxes have their own toggle sound
         if (e.Source is Button b && (b.Tag as string) == "no-sound")
             return; // has its own specific sound
         _viewModel.PlayClick();
@@ -114,6 +115,17 @@ public partial class MainWindow : Window
     }
 
     private void OnAnyTextInput(object sender, TextCompositionEventArgs e) => _viewModel.PlayKeystroke();
+
+    private DateTime _lastSliderSound = DateTime.MinValue;
+
+    private void OnAnySliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        var now = DateTime.UtcNow;
+        if ((now - _lastSliderSound).TotalMilliseconds < 40)
+            return;
+        _lastSliderSound = now;
+        _viewModel.PlaySliderTick();
+    }
 
     protected override void OnClosing(CancelEventArgs e)
     {

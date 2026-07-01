@@ -3,7 +3,7 @@ namespace Dimmr.Models;
 /// <summary>Global, profile-independent settings.</summary>
 public sealed class AppSettings
 {
-    public string ActiveProfile { get; set; } = "default";
+    public string ActiveProfile { get; set; } = "DEFAULT";
 
     /// <summary>Launch with Windows (mirrored to the HKCU Run key).</summary>
     public bool RunAtStartup { get; set; }

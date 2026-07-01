@@ -17,6 +17,7 @@
     <SolidColorBrush x:Key="SecondaryTextBrush" Color="{StaticResource SecondaryTextColor}" />
     <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
     <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource DangerColor}" />
+    <SolidColorBrush x:Key="DeleteBrush" Color="{StaticResource DangerColor}" />
     <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
     <SolidColorBrush x:Key="DisabledBrush" Color="{StaticResource DisabledColor}" />
     <SolidColorBrush x:Key="HoverBrush" Color="#3333FF33" />

@@ -7,6 +7,23 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.2] - 2026-07-01
+
+### Fixed
+
+- The three top-right title buttons (settings, minimize, close) are now equal-sized
+  squares, and the close button sits flush against the right edge.
+- Hovering a text button (Identify Screens, Refresh Monitors, New profile, Minimize) now
+  inverts its label to dark so it stays readable on the highlight; before, only the icon
+  buttons flipped.
+
+### Changed
+
+- The title bar background now matches the content, so the top-right buttons show the same
+  faint box as the profile buttons instead of looking flat.
+- In the amber scheme the delete `[-]` is now white for stronger contrast; the close `[X]`
+  stays hot amber.
+
 ## [0.4.1] - 2026-07-01
 
 ### Fixed

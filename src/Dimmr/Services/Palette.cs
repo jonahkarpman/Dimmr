@@ -32,6 +32,7 @@ public static class Palette
         Set("SecondaryTextBrush", "#1A8C1A");
         Set("AccentBrush", "#00FF41");
         Set("DangerBrush", "#FF8800");
+        Set("DeleteBrush", "#FF8800");
         Set("BorderBrush", "#1A4D1A");
         Set("DisabledBrush", "#0D3D0D");
         Set("HoverBrush", "#3333FF33");
@@ -46,6 +47,7 @@ public static class Palette
         Set("SecondaryTextBrush", "#A67C33");
         Set("AccentBrush", "#FFCC66");
         Set("DangerBrush", "#FFE0A0");
+        Set("DeleteBrush", "#FFFFFF");
         Set("BorderBrush", "#4D3A1A");
         Set("DisabledBrush", "#3D2E0D");
         Set("HoverBrush", "#33FFB642");

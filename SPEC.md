@@ -1,6 +1,6 @@
 # Dimmr — Project Specification
 
-> Version: 0.4.2
+> Version: 0.4.3
 > Last updated: 2026-07-01
 > Status: Initial version built
 

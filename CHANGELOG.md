@@ -7,6 +7,18 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.3] - 2026-07-01
+
+### Fixed
+
+- The top-right title buttons now fill the title bar height, removing the small gap that
+  had appeared above them.
+
+### Changed
+
+- The close `[X]` now uses the same color as the delete `[-]`, so it is white in the amber
+  scheme too (orange in green).
+
 ## [0.4.2] - 2026-07-01
 
 ### Fixed

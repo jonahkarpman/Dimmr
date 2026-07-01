@@ -78,7 +78,6 @@ public sealed class MainViewModel : ViewModelBase
             if (!string.IsNullOrEmpty(value) && value != _controller.Profile.Name)
             {
                 _controller.SwitchProfile(value);
-                _controller.PlayClick();
                 RebuildScreens();
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(MasterOn));
@@ -174,9 +173,16 @@ public sealed class MainViewModel : ViewModelBase
     // Re-raise the selection after the Profiles collection settles so the ComboBox
     // reliably shows the active profile.
     private void RaiseSelectionLater()
-        => Application.Current?.Dispatcher.BeginInvoke(
-            new System.Action(() => OnPropertyChanged(nameof(SelectedProfile))),
-            System.Windows.Threading.DispatcherPriority.Background);
+    {
+        Repopulating = true;
+        Application.Current?.Dispatcher.BeginInvoke(new System.Action(() =>
+        {
+            OnPropertyChanged(nameof(SelectedProfile));
+            Application.Current?.Dispatcher.BeginInvoke(
+                new System.Action(() => Repopulating = false),
+                System.Windows.Threading.DispatcherPriority.Background);
+        }), System.Windows.Threading.DispatcherPriority.Background);
+    }
 
     public void PlayClick() => _controller.PlayClick();
     public void PlayNavIn() => _controller.PlayNavIn();
@@ -187,11 +193,15 @@ public sealed class MainViewModel : ViewModelBase
     public void StopHum() => _controller.StopHum();
     public void PlaySliderTick() => _controller.PlayAdjust();
 
+    public bool Repopulating { get; private set; }
+
     private void ReloadProfiles()
     {
+        Repopulating = true;
         Profiles.Clear();
         foreach (var name in _controller.ProfileNames())
             Profiles.Add(name);
+        Repopulating = false;
     }
 
     private void RebuildScreens()

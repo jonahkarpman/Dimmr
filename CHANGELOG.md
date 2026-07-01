@@ -7,6 +7,8 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-01
+
 ### Added
 
 - Delete profile via a `[x]` button with a confirmation dialog ("CONFIRM DELETION",
@@ -16,11 +18,13 @@ project uses [Semantic Versioning](https://semver.org/).
   profile, scrap on delete, plus a looping ambient hum while the window is focused. All
   gated by the Sounds toggle; the hum has its own "Ambient hum" toggle.
 - Sounds also on selecting a profile, opening a dropdown, and moving a slider (throttled).
+- Sounds on opening the delete confirm and on aborting it (VATS in/out), in addition to the
+  scrap on confirm.
 
 ### Changed
 
 - Profile controls are now compact symbol buttons next to their fields: `[+]` new profile
-  from current settings, save (check) to the selected profile, `[x]` delete.
+  from current settings, save (floppy icon) to the selected profile, `[x]` delete.
 - Brand shown in uppercase ("DIMMR") in the title bar, window title, and tray tooltip.
   The auto-created fallback profile is named "DEFAULT".
 

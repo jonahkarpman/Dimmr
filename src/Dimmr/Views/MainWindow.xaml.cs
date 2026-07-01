@@ -31,6 +31,7 @@ public partial class MainWindow : Window
         AddHandler(ToggleButton.CheckedEvent, new RoutedEventHandler(OnAnyToggle), true);
         AddHandler(ToggleButton.UncheckedEvent, new RoutedEventHandler(OnAnyToggle), true);
         AddHandler(Slider.ValueChangedEvent, new RoutedPropertyChangedEventHandler<double>(OnAnySliderChanged), true);
+        AddHandler(Selector.SelectionChangedEvent, new SelectionChangedEventHandler(OnAnySelectionChanged), true);
         PreviewTextInput += OnAnyTextInput;
         Activated += (_, _) => _viewModel.StartHum();
         Deactivated += (_, _) => _viewModel.StopHum();
@@ -94,9 +95,12 @@ public partial class MainWindow : Window
 
     private void OnDeleteProfile(object sender, RoutedEventArgs e)
     {
+        _viewModel.PlayNavIn();
         var name = _viewModel.SelectedProfile;
         if (ConfirmDialog.Show(this, "CONFIRM DELETION", $"TERMINATE PROFILE: {name}?"))
             _viewModel.DeleteSelected();
+        else
+            _viewModel.PlayNavOut();
     }
 
     private void OnAnyButtonClick(object sender, RoutedEventArgs e)
@@ -125,6 +129,13 @@ public partial class MainWindow : Window
             return;
         _lastSliderSound = now;
         _viewModel.PlaySliderTick();
+    }
+
+    private void OnAnySelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (_viewModel.Repopulating)
+            return;
+        _viewModel.PlayClick();
     }
 
     protected override void OnClosing(CancelEventArgs e)

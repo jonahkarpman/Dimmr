@@ -30,7 +30,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="TitleText" Text="&gt; DIMMR v0.1.0_" Foreground="{StaticResource AccentBrush}"
+                <TextBlock x:Name="TitleText" Text="&gt; DIMMR v0.2.0_" Foreground="{StaticResource AccentBrush}"
                            FontFamily="Consolas" FontSize="14" VerticalAlignment="Center" Margin="10,0">
                     <TextBlock.Effect>
                         <DropShadowEffect Color="#00FF41" BlurRadius="10" ShadowDepth="0" Opacity="0.8" />
@@ -147,8 +147,12 @@
                                  AutomationProperties.Name="New profile name" />
                         <Button Grid.Column="1" Content="[+]" Command="{Binding SaveAsCommand}" Margin="6,0,0,0"
                                 Tag="no-sound" ToolTip="New profile from current settings" AutomationProperties.Name="New profile" />
-                        <Button Grid.Column="2" Content="[&#x2713;]" Command="{Binding SaveCommand}" Margin="6,0,0,0"
-                                ToolTip="Save changes to the selected profile" AutomationProperties.Name="Save profile" />
+                        <Button Grid.Column="2" Command="{Binding SaveCommand}" Margin="6,0,0,0" Padding="8,4"
+                                ToolTip="Save changes to the selected profile" AutomationProperties.Name="Save profile">
+                            <Path Width="14" Height="14" Stretch="Uniform" StrokeThickness="1.2" Fill="Transparent"
+                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  Data="M2,2 L11,2 L14,5 L14,14 L2,14 Z M5,2 L5,6 L11,6 L11,2 M4,9 L12,9 L12,13 L4,13 Z" />
+                        </Button>
                     </Grid>
                     <Button Content="REFRESH MONITORS" Command="{Binding RefreshCommand}" Margin="0,8,0,0"
                             HorizontalAlignment="Left" />

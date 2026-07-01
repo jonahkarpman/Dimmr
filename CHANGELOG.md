@@ -7,6 +7,15 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.5] - 2026-07-01
+
+### Fixed
+
+- Editing a screen's dim slider is now a live preview only and no longer auto-saves.
+  Switching profiles, or closing the app, without clicking Save discards the change, so a
+  profile always comes back at its last saved values. Previously switching or exiting wrote
+  the unsaved edit to disk.
+
 ## [0.4.4] - 2026-07-01
 
 ### Changed

@@ -157,7 +157,7 @@ public sealed class DimmrController : IDisposable
 
     public void SwitchProfile(string name)
     {
-        SaveCurrent();
+        // Discard any unsaved edits to the current profile by loading the target fresh.
         Profile = _profiles.LoadProfile(name);
         Settings.ActiveProfile = name;
         SyncMonitors();
@@ -168,9 +168,8 @@ public sealed class DimmrController : IDisposable
 
     public void SaveAsProfile(string name)
     {
-        // Persist the current profile, then clone its live state under a new name.
-        _profiles.SaveProfile(Profile);
-
+        // Clone the current live state under a new name. The previous profile keeps its
+        // last saved state; unsaved edits are not written to it.
         Profile = new Profile
         {
             Name = name,
@@ -253,7 +252,7 @@ public sealed class DimmrController : IDisposable
     public void Dispose()
     {
         SystemEvents.DisplaySettingsChanged -= OnDisplaysChanged;
-        try { SaveCurrent(); } catch { /* best effort on shutdown */ }
+        try { SaveSettings(); } catch { /* best effort on shutdown */ }
         _overlays.Clear();
         _hotkeys.Dispose();
         _sounds.Dispose();

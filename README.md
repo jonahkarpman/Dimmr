@@ -3,20 +3,18 @@
 > A phosphor CRT themed multi-monitor screen dimmer for Windows
 
 Dimmr dims your screens with a click-through overlay, per monitor, with profiles and
-global hotkeys. It was built to solve a specific problem: on Snapdragon (ARM64) laptops,
-the Qualcomm Adreno driver does not apply the color/gamma pipeline or DDC/CI to external
-monitors, so f.lux, Windows Night Light, and hardware brightness tools cannot dim an
-external display. Dimmr sidesteps all of that by drawing a translucent layer, which works
-on any GPU.
+global hotkeys. Because it dims by drawing a translucent layer instead of changing the
+display's gamma or backlight, it works on any GPU and any monitor, including external
+displays that software color tools or hardware brightness controls cannot dim.
 
 ## Features
 
 - Per-monitor dimming with a master control plus an independent per-screen dim level
 - Identify Screens button to confirm which physical monitor is which
-- Named profiles for different setups (for example `desk-g9`, `dual-external`)
+- Named profiles for different setups (for example `work`, `home`)
 - Correct coverage on docked and mixed-DPI displays (PerMonitorV2 aware, with a manual
   bounds override for any monitor that still misreads)
-- Global hotkeys, works alongside f.lux
+- Global hotkeys, and coexists with color tools like Night Light
 - Runs in the system tray, optional launch at startup
 - Choose whether to start undimmed or at a set level
 - Phosphor terminal aesthetic, with accessibility built in

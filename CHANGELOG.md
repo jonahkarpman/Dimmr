@@ -7,6 +7,18 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-07-01
+
+### Added
+
+- The Scanlines option now actually renders a faint CRT scanline overlay (it was a no-op
+  toggle before).
+
+### Changed
+
+- Newly detected monitors default to 0% dim (were 30%), so a plugged-in display is not
+  dimmed until you set it.
+
 ## [0.3.1] - 2026-07-01
 
 ### Changed
@@ -43,7 +55,7 @@ project uses [Semantic Versioning](https://semver.org/).
 ### Changed
 
 - Brightness hotkeys moved to Win+Shift+Page Up / Win+Shift+Page Down (Alt+Page Up/Down
-  conflicted with f.lux). Toggle stays Win+Shift+D.
+  conflicted with other apps). Toggle stays Win+Shift+D.
 - Profile symbol buttons are now a uniform size, and the settings cog is a drawn gear.
 - Profile layout: save sits by the dropdown; new `[+]` and delete `[-]` sit together by
   the name box, with delete in amber. Checkbox marks are filled squares, and the name box
@@ -61,14 +73,14 @@ project uses [Semantic Versioning](https://semver.org/).
 ### Added
 
 - Delete profile via a `[x]` button with a confirmation dialog ("CONFIRM DELETION",
-  "[ ABORT ] / [ AFFIRM ]") and a Fallout scrap sound on confirm.
-- Fallout UI sounds wired from bundled .wav files: click on buttons, target-lock on
-  checkboxes, keystroke on typing, VATS in/out on opening/closing settings, start on new
-  profile, scrap on delete, plus a looping ambient hum while the window is focused. All
+  "[ ABORT ] / [ AFFIRM ]") and a scrap sound on confirm.
+- Retro terminal UI sounds wired from bundled .wav files: click on buttons, a lock tone on
+  checkboxes, keystroke on typing, in/out tones on opening/closing settings, a start tone on
+  new profile, scrap on delete, plus a looping ambient hum while the window is focused. All
   gated by the Sounds toggle; the hum has its own "Ambient hum" toggle.
 - Sounds also on selecting a profile, opening a dropdown, and moving a slider (throttled).
-- Sounds on opening the delete confirm and on aborting it (VATS in/out), in addition to the
-  scrap on confirm.
+- Sounds on opening the delete confirm and on aborting it (in/out tones), in addition to the
+  scrap on delete confirm.
 
 ### Changed
 

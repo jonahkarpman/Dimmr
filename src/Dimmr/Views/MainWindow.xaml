@@ -202,6 +202,22 @@
                     </StackPanel>
                 </Border>
             </Grid>
+
+            <!-- Scanline overlay (CRT effect) -->
+            <Rectangle Grid.RowSpan="3" IsHitTestVisible="False"
+                       Visibility="{Binding Scanlines, Converter={StaticResource BoolToVis}}">
+                <Rectangle.Fill>
+                    <DrawingBrush TileMode="Tile" Viewport="0,0,3,3" ViewportUnits="Absolute">
+                        <DrawingBrush.Drawing>
+                            <GeometryDrawing Brush="#22000000">
+                                <GeometryDrawing.Geometry>
+                                    <RectangleGeometry Rect="0,0,3,1" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Rectangle.Fill>
+            </Rectangle>
         </Grid>
     </Border>
 </Window>

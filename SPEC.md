@@ -1,6 +1,6 @@
 # Dimmr — Project Specification
 
-> Version: 0.3.1
+> Version: 0.3.2
 > Last updated: 2026-07-01
 > Status: Initial version built
 
@@ -13,27 +13,21 @@ click-through overlay per monitor. It supports named profiles for different phys
 setups, global hotkeys, and launch at startup. The interface uses a Phosphor terminal
 aesthetic.
 
-## Problem Statement
+## Motivation
 
-On Snapdragon (ARM64) laptops, the Qualcomm Adreno display driver does not apply the
-color/gamma pipeline or DDC/CI to external monitors. As a result:
+Some displays cannot be dimmed by the usual means. Software color tools (Night Light and
+similar) and hardware brightness controls do not work on every monitor, GPU, or dock
+combination, and an external display in particular can end up stuck at full brightness.
 
-- f.lux and Windows Night Light do nothing on an external display.
-- Hardware brightness tools (Twinkle Tray, Monitorian) report the display as unsupported.
-
-The same monitor and dock work correctly on an x86 laptop, so the gap is the ARM GPU
-driver. An overlay dimmer avoids both the gamma pipeline and DDC/CI by simply rendering a
-window, which works on any GPU, including Adreno.
-
-A second, related problem: existing overlay dimmers (for example Nelson Pires' Dimmer) are
-not per-monitor DPI aware and misread monitor bounds behind docks, leaving part of an
-ultrawide screen uncovered. Dimmr fixes this with PerMonitorV2 awareness plus a manual
-bounds override.
+An overlay dimmer sidesteps all of that: it renders a translucent, click-through window on
+top of the screen, so it works on any GPU and any monitor regardless of driver support.
+Dimmr also handles docked and mixed-DPI monitors correctly, which simpler overlay dimmers
+often get wrong, using PerMonitorV2 awareness plus a manual bounds override.
 
 ## Target User
 
-- People on Snapdragon/ARM Windows laptops driving external monitors through a dock.
 - Anyone who wants per-monitor software dimming with hotkeys and profiles.
+- Setups where built-in brightness or color controls do not affect a given monitor.
 
 ## Core Features
 
@@ -64,7 +58,8 @@ bounds override.
 - Win+Shift+D toggles dimming to the last level.
 - Win+Shift+Page Up adds dim, Win+Shift+Page Down removes dim (5 percent steps), on the
   enabled screens only.
-- Registered globally; coexists with f.lux (overlay vs gamma are independent).
+- Registered globally; coexists with color tools like Night Light (overlay and gamma are
+  independent).
 
 ### 6. System tray
 - Tray icon with: Settings, Dimming on/off, Profiles submenu, Run at startup, Exit.
@@ -87,7 +82,7 @@ bounds override.
 
 ## Design Language
 
-Theme: Phosphor terminal, matching the sibling `windowr` project.
+Theme: Phosphor terminal, a green-on-near-black CRT look.
 
 ### Color Palette
 
@@ -111,7 +106,7 @@ Theme: Phosphor terminal, matching the sibling `windowr` project.
 - Sliders with a green fill and a rectangular thumb.
 - Themed dark dropdowns with a green focus glow.
 - A title-bar cog that opens a centered settings panel over the dimmed app.
-- Custom title bar: `> DIMMR v0.3.1_`, with `[_]` and `[X]`.
+- Custom title bar: `> DIMMR v0.3.2_`, with `[_]` and `[X]`.
 - Optional scanline overlay (toggleable).
 
 ---
@@ -214,5 +209,5 @@ The Phosphor look must not reduce usability. Target WCAG 2.1 AA where applicable
 ## Open Questions
 
 1. Should dimming ever cover exclusive full-screen games, or explicitly skip them?
-2. Should profiles auto-select based on connected monitors (like windowr does)?
+2. Should profiles auto-select based on the connected monitors?
 3. Package as a single-file exe, or keep the framework-dependent build?

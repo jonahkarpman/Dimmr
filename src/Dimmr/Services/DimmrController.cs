@@ -80,7 +80,7 @@ public sealed class DimmrController : IDisposable
                     DeviceName = mon.DeviceName,
                     Label = $"Screen {index} ({mon.Width}x{mon.Height})",
                     Enabled = true,
-                    Dim = 30,
+                    Dim = 0,
                     AutoBounds = true,
                     X = mon.X,
                     Y = mon.Y,

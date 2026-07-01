@@ -10,12 +10,12 @@
         ShowActivated="False"
         Focusable="False"
         WindowStartupLocation="Manual">
-    <Border BorderBrush="{StaticResource AccentBrush}" BorderThickness="4" Margin="60">
+    <Border BorderBrush="{DynamicResource AccentBrush}" BorderThickness="4" Margin="60">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock x:Name="NumberText" FontFamily="Consolas" FontSize="200"
-                       Foreground="{StaticResource AccentBrush}" HorizontalAlignment="Center" />
+                       Foreground="{DynamicResource AccentBrush}" HorizontalAlignment="Center" />
             <TextBlock x:Name="LabelText" FontFamily="Consolas" FontSize="26"
-                       Foreground="{StaticResource PrimaryTextBrush}" HorizontalAlignment="Center" />
+                       Foreground="{DynamicResource PrimaryTextBrush}" HorizontalAlignment="Center" />
         </StackPanel>
     </Border>
 </Window>

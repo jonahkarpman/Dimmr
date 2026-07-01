@@ -11,17 +11,17 @@
         ShowInTaskbar="False"
         Topmost="True"
         AutomationProperties.Name="Confirmation dialog">
-    <Border Background="{StaticResource BackgroundBrush}" BorderBrush="{StaticResource AccentBrush}"
+    <Border Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource AccentBrush}"
             BorderThickness="2" Padding="20">
         <StackPanel>
-            <TextBlock x:Name="TitleText" Foreground="{StaticResource DangerBrush}"
+            <TextBlock x:Name="TitleText" Foreground="{DynamicResource DangerBrush}"
                        FontFamily="Consolas" FontSize="15" FontWeight="Bold" Margin="0,0,0,12" />
             <TextBlock x:Name="MessageText" TextWrapping="Wrap" Margin="0,0,0,16" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="[ ABORT ]" Click="OnCancel" IsCancel="True" Margin="0,0,8,0"
                         AutomationProperties.Name="Abort" />
                 <Button Content="[ AFFIRM ]" Click="OnConfirm" IsDefault="True"
-                        Foreground="{StaticResource DangerBrush}"
+                        Foreground="{DynamicResource DangerBrush}"
                         AutomationProperties.Name="Affirm" />
             </StackPanel>
         </StackPanel>

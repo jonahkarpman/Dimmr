@@ -54,8 +54,11 @@ public static class Palette
 
     private static void Set(string key, string hex)
     {
-        if (Application.Current?.Resources[key] is SolidColorBrush brush && !brush.IsFrozen)
-            brush.Color = ToColor(hex);
+        if (Application.Current == null)
+            return;
+        // Replace the resource entry (DynamicResource consumers re-resolve live). This works
+        // even though the original brushes are frozen.
+        Application.Current.Resources[key] = new SolidColorBrush(ToColor(hex));
     }
 
     private static Color ToColor(string hex) => (Color)ColorConverter.ConvertFromString(hex);

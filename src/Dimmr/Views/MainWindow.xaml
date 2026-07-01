@@ -7,7 +7,7 @@
         WindowStyle="None"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Background="{StaticResource BackgroundBrush}"
+        Background="{DynamicResource BackgroundBrush}"
         UseLayoutRounding="True"
         TextOptions.TextFormattingMode="Display">
 
@@ -16,7 +16,7 @@
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>
 
-    <Border BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+    <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -25,12 +25,12 @@
             </Grid.RowDefinitions>
 
             <!-- Title bar -->
-            <Grid Grid.Row="0" Background="{StaticResource SurfaceBrush}" x:Name="TitleBar" Height="34">
+            <Grid Grid.Row="0" Background="{DynamicResource SurfaceBrush}" x:Name="TitleBar" Height="34">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="TitleText" Text="{Binding AppTitle}" Foreground="{StaticResource AccentBrush}"
+                <TextBlock x:Name="TitleText" Text="{Binding AppTitle}" Foreground="{DynamicResource AccentBrush}"
                            FontFamily="Consolas" FontSize="14" VerticalAlignment="Center" Margin="10,0">
                     <TextBlock.Effect>
                         <DropShadowEffect Color="#00FF41" BlurRadius="10" ShadowDepth="0" Opacity="0.8" />
@@ -47,7 +47,7 @@
                             AutomationProperties.Name="Minimize" />
                     <Button Click="OnHide" MinHeight="0" Padding="8,2" Margin="2,0,4,0"
                             AutomationProperties.Name="Close to tray">
-                        <TextBlock Text="[X]" Foreground="{StaticResource DangerBrush}" FontFamily="Consolas" />
+                        <TextBlock Text="[X]" Foreground="{DynamicResource DangerBrush}" FontFamily="Consolas" />
                     </Button>
                 </StackPanel>
             </Grid>
@@ -68,7 +68,7 @@
                     <ItemsControl ItemsSource="{Binding Screens}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
+                                <Border BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
                                         Margin="0,0,0,8" Padding="8" Tag="glowbox">
                                     <Border.Effect>
                                         <DropShadowEffect Color="#00FF41" BlurRadius="8" ShadowDepth="0" Opacity="0" />
@@ -83,7 +83,7 @@
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Text="Dim" VerticalAlignment="Center" Margin="0,0,8,0"
-                                                       Foreground="{StaticResource SecondaryTextBrush}" />
+                                                       Foreground="{DynamicResource SecondaryTextBrush}" />
                                             <Slider Grid.Column="1" Minimum="0" Maximum="85" Value="{Binding Dim}"
                                                     SmallChange="5" LargeChange="10" IsSnapToTickEnabled="True" TickFrequency="1"
                                                     AutomationProperties.Name="Screen dim level" />
@@ -100,19 +100,19 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0" Margin="0,0,4,0">
-                                                <TextBlock Text="X" Foreground="{StaticResource SecondaryTextBrush}" />
+                                                <TextBlock Text="X" Foreground="{DynamicResource SecondaryTextBrush}" />
                                                 <TextBox Text="{Binding X}" AutomationProperties.Name="Bounds X" />
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" Margin="0,0,4,0">
-                                                <TextBlock Text="Y" Foreground="{StaticResource SecondaryTextBrush}" />
+                                                <TextBlock Text="Y" Foreground="{DynamicResource SecondaryTextBrush}" />
                                                 <TextBox Text="{Binding Y}" AutomationProperties.Name="Bounds Y" />
                                             </StackPanel>
                                             <StackPanel Grid.Column="2" Margin="0,0,4,0">
-                                                <TextBlock Text="W" Foreground="{StaticResource SecondaryTextBrush}" />
+                                                <TextBlock Text="W" Foreground="{DynamicResource SecondaryTextBrush}" />
                                                 <TextBox Text="{Binding Width}" AutomationProperties.Name="Bounds width" />
                                             </StackPanel>
                                             <StackPanel Grid.Column="3">
-                                                <TextBlock Text="H" Foreground="{StaticResource SecondaryTextBrush}" />
+                                                <TextBlock Text="H" Foreground="{DynamicResource SecondaryTextBrush}" />
                                                 <TextBox Text="{Binding Height}" AutomationProperties.Name="Bounds height" />
                                             </StackPanel>
                                         </Grid>
@@ -154,7 +154,7 @@
                                 Width="34" Height="30" MinHeight="0" Padding="0"
                                 Tag="no-sound" ToolTip="Delete selected profile"
                                 AutomationProperties.Name="Delete profile">
-                            <TextBlock Text="[-]" Foreground="{StaticResource DangerBrush}" FontFamily="Consolas" />
+                            <TextBlock Text="[-]" Foreground="{DynamicResource DangerBrush}" FontFamily="Consolas" />
                         </Button>
                     </Grid>
                     <Button Content="REFRESH MONITORS" Command="{Binding RefreshCommand}" Margin="0,8,0,0"
@@ -164,8 +164,8 @@
             </ScrollViewer>
 
             <!-- Status bar -->
-            <Border Grid.Row="2" Background="{StaticResource SurfaceBrush}" Padding="10,4">
-                <TextBlock Foreground="{StaticResource SecondaryTextBrush}" FontSize="11"
+            <Border Grid.Row="2" Background="{DynamicResource SurfaceBrush}" Padding="10,4">
+                <TextBlock Foreground="{DynamicResource SecondaryTextBrush}" FontSize="11"
                            Text="Win+Shift+D toggle  .  Win+Shift+PgUp more dim  .  Win+Shift+PgDn less dim" />
             </Border>
 
@@ -173,7 +173,7 @@
             <Grid x:Name="SettingsOverlay" Grid.RowSpan="3" Background="#C0000000"
                   Visibility="Collapsed" MouseLeftButtonDown="OnSettingsBackdrop">
                 <Border Width="320" HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Background="{StaticResource BackgroundBrush}" BorderBrush="{StaticResource AccentBrush}"
+                        Background="{DynamicResource BackgroundBrush}" BorderBrush="{DynamicResource AccentBrush}"
                         BorderThickness="1" Padding="16" MouseLeftButtonDown="OnSettingsPanelClick">
                     <StackPanel>
                         <Grid>
@@ -189,7 +189,7 @@
                                   Margin="0,6,0,0" AutomationProperties.Name="Reset dim on startup" />
                         <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
                             <TextBlock Text="Start at" VerticalAlignment="Center" Margin="0,0,8,0"
-                                       Foreground="{StaticResource SecondaryTextBrush}" />
+                                       Foreground="{DynamicResource SecondaryTextBrush}" />
                             <ComboBox ItemsSource="{Binding StartupDimOptions}" SelectedItem="{Binding StartupDim}"
                                       Width="80" AutomationProperties.Name="Startup dim value" />
                             <TextBlock Text="%" VerticalAlignment="Center" Margin="4,0,0,0" />
@@ -207,22 +207,14 @@
 
                         <TextBlock Text="COLOR" Style="{StaticResource HeaderText}" />
                         <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
-                            <StackPanel Margin="0,0,14,0">
-                                <RadioButton x:Name="SwatchGreen" Style="{StaticResource ColorSwatch}"
-                                             GroupName="ColorScheme" Tag="Green" Background="#33FF33"
-                                             Checked="OnSelectColor" AutomationProperties.Name="Green color"
-                                             ToolTip="Phosphor green" />
-                                <TextBlock Text="GREEN" Foreground="#33FF33" FontFamily="Consolas" FontSize="11"
-                                           HorizontalAlignment="Center" Margin="0,3,0,0" />
-                            </StackPanel>
-                            <StackPanel>
-                                <RadioButton x:Name="SwatchAmber" Style="{StaticResource ColorSwatch}"
-                                             GroupName="ColorScheme" Tag="Amber" Background="#FFB642"
-                                             Checked="OnSelectColor" AutomationProperties.Name="Amber color"
-                                             ToolTip="New Vegas amber" />
-                                <TextBlock Text="AMBER" Foreground="#FFB642" FontFamily="Consolas" FontSize="11"
-                                           HorizontalAlignment="Center" Margin="0,3,0,0" />
-                            </StackPanel>
+                            <RadioButton x:Name="SwatchGreen" Style="{StaticResource ColorSwatch}"
+                                         GroupName="ColorScheme" Tag="Green" Background="#33FF33" Margin="0,0,8,0"
+                                         Checked="OnSelectColor" AutomationProperties.Name="Green color"
+                                         ToolTip="Phosphor green" />
+                            <RadioButton x:Name="SwatchAmber" Style="{StaticResource ColorSwatch}"
+                                         GroupName="ColorScheme" Tag="Amber" Background="#FFB642"
+                                         Checked="OnSelectColor" AutomationProperties.Name="Amber color"
+                                         ToolTip="New Vegas amber" />
                         </StackPanel>
                     </StackPanel>
                 </Border>

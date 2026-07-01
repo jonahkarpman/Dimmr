@@ -7,6 +7,19 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-07-01
+
+### Fixed
+
+- Selecting a color now actually applies. The palette brushes were frozen, so recoloring
+  them in place did nothing; the themed brushes are now dynamic resources that get swapped
+  on selection.
+
+### Changed
+
+- The color swatches are now small squares without text labels; the color speaks for
+  itself.
+
 ## [0.4.0] - 2026-07-01
 
 ### Added

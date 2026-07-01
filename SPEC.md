@@ -62,7 +62,7 @@ bounds override.
 
 ### 5. Hotkeys
 - Win+Shift+D toggles dimming to the last level.
-- Alt+Page Up brightens, Alt+Page Down dims (5 percent steps).
+- Win+Shift+Page Up brightens, Win+Shift+Page Down dims (5 percent steps).
 - Registered globally; coexists with f.lux (overlay vs gamma are independent).
 
 ### 6. System tray

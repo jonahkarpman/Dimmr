@@ -37,7 +37,7 @@
                     </TextBlock.Effect>
                 </TextBlock>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <Button Content="&#x2699;" FontFamily="Segoe UI Symbol" Click="OnOpenSettings" MinHeight="0" Padding="8,2" Margin="0"
+                    <Button Content="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="14" Click="OnOpenSettings" MinHeight="0" Padding="8,2" Margin="0"
                             Tag="no-sound" AutomationProperties.Name="Settings" />
                     <Button Content="[_]" Click="OnMinimize" MinHeight="0" Padding="8,2" Margin="2,0,0,0"
                             AutomationProperties.Name="Minimize" />
@@ -134,6 +134,7 @@
                         <ComboBox ItemsSource="{Binding Profiles}" SelectedItem="{Binding SelectedProfile}"
                                   AutomationProperties.Name="Active profile" />
                         <Button Grid.Column="1" Content="[x]" Click="OnDeleteProfile" Margin="6,0,0,0"
+                                Width="34" Height="30" MinHeight="0" Padding="0"
                                 Foreground="{StaticResource DangerBrush}" Tag="no-sound" ToolTip="Delete selected profile"
                                 AutomationProperties.Name="Delete profile" />
                     </Grid>
@@ -146,8 +147,10 @@
                         <TextBox Text="{Binding NewProfileName, UpdateSourceTrigger=PropertyChanged}"
                                  AutomationProperties.Name="New profile name" />
                         <Button Grid.Column="1" Content="[+]" Command="{Binding SaveAsCommand}" Margin="6,0,0,0"
+                                Width="34" Height="30" MinHeight="0" Padding="0"
                                 Tag="no-sound" ToolTip="New profile from current settings" AutomationProperties.Name="New profile" />
-                        <Button Grid.Column="2" Command="{Binding SaveCommand}" Margin="6,0,0,0" Padding="8,4"
+                        <Button Grid.Column="2" Command="{Binding SaveCommand}" Margin="6,0,0,0"
+                                Width="34" Height="30" MinHeight="0" Padding="0"
                                 ToolTip="Save changes to the selected profile" AutomationProperties.Name="Save profile">
                             <Path Width="14" Height="14" Stretch="Uniform" StrokeThickness="1.2" Fill="Transparent"
                                   Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
@@ -163,7 +166,7 @@
             <!-- Status bar -->
             <Border Grid.Row="2" Background="{StaticResource SurfaceBrush}" Padding="10,4">
                 <TextBlock Foreground="{StaticResource SecondaryTextBrush}" FontSize="11"
-                           Text="Win+Shift+D toggle  .  Alt+PgUp brighter  .  Alt+PgDn dimmer" />
+                           Text="Win+Shift+D toggle  .  Win+Shift+PgUp brighter  .  Win+Shift+PgDn dimmer" />
             </Border>
 
             <!-- Settings overlay -->

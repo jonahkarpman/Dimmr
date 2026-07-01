@@ -7,6 +7,17 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Brightness hotkeys moved to Win+Shift+Page Up / Win+Shift+Page Down (Alt+Page Up/Down
+  conflicted with f.lux). Toggle stays Win+Shift+D.
+- Profile symbol buttons are now a uniform size, and the settings cog uses a crisper glyph.
+
+### Fixed
+
+- The profile dropdown reliably shows the active profile after creating a profile or
+  reopening the window (the list is updated in place instead of cleared and rebuilt).
+
 ## [0.2.0] - 2026-07-01
 
 ### Added

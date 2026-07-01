@@ -143,6 +143,7 @@ public sealed class MainViewModel : ViewModelBase
             OnPropertyChanged(nameof(MasterOn));
             OnPropertyChanged(nameof(MasterDim));
             OnPropertyChanged(nameof(RunAtStartup));
+            RaiseSelectionLater();
         });
     }
 
@@ -198,9 +199,13 @@ public sealed class MainViewModel : ViewModelBase
     private void ReloadProfiles()
     {
         Repopulating = true;
-        Profiles.Clear();
-        foreach (var name in _controller.ProfileNames())
-            Profiles.Add(name);
+        var names = _controller.ProfileNames();
+        for (int i = Profiles.Count - 1; i >= 0; i--)
+            if (!names.Contains(Profiles[i]))
+                Profiles.RemoveAt(i);
+        foreach (var name in names)
+            if (!Profiles.Contains(name))
+                Profiles.Add(name);
         Repopulating = false;
     }
 

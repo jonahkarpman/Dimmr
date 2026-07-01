@@ -66,7 +66,15 @@ public partial class MainWindow : Window
             if (obj is TextBlock tb && _headerStyle != null && ReferenceEquals(tb.Style, _headerStyle))
                 BreatheOpacity(tb, on);
             else if (obj is Border b && (b.Tag as string) == "glowbox" && b.Effect is DropShadowEffect dse)
+            {
+                // Effects declared in a template are frozen; clone to a mutable copy to animate.
+                if (dse.IsFrozen)
+                {
+                    dse = dse.Clone();
+                    b.Effect = dse;
+                }
                 BreatheGlow(dse, on);
+            }
         }
     }
 

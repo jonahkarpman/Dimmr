@@ -7,6 +7,13 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.7] - 2026-07-01
+
+### Fixed
+
+- Fixed a crash on launch introduced in 0.3.6: the glow could not animate the screen-box
+  effect because template effects are frozen. The effect is now cloned before animating.
+
 ## [0.3.6] - 2026-07-01
 
 ### Changed

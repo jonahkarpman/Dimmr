@@ -158,10 +158,29 @@ public sealed class DimmrController : IDisposable
         StateChanged?.Invoke();
     }
 
-    public void NewProfile(string name)
+    public void SaveAsProfile(string name)
     {
-        SaveCurrent();
-        Profile = new Profile { Name = name };
+        // Persist the current profile, then clone its live state under a new name.
+        _profiles.SaveProfile(Profile);
+
+        Profile = new Profile
+        {
+            Name = name,
+            MasterOn = Profile.MasterOn,
+            MasterDim = Profile.MasterDim,
+            Screens = Profile.Screens.Select(s => new ScreenConfig
+            {
+                DeviceName = s.DeviceName,
+                Label = s.Label,
+                Enabled = s.Enabled,
+                Dim = s.Dim,
+                AutoBounds = s.AutoBounds,
+                X = s.X,
+                Y = s.Y,
+                Width = s.Width,
+                Height = s.Height
+            }).ToList()
+        };
         Settings.ActiveProfile = name;
         SyncMonitors();
         SaveCurrent();

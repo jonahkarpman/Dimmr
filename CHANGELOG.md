@@ -7,6 +7,11 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Creating a profile now clones the current live settings under the new name (Save As) and
+  selects it, instead of making a blank, muted profile. The button is labelled "Save As".
+
 ## [0.1.0] - 2026-06-30
 
 Initial working version.

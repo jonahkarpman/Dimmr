@@ -17,7 +17,7 @@ public sealed class MainViewModel : ViewModelBase
     public IReadOnlyList<int> StartupDimOptions { get; } = new[] { 0, 10, 20, 30, 40, 50, 60, 70, 80 };
 
     public ICommand SaveCommand { get; }
-    public ICommand NewProfileCommand { get; }
+    public ICommand SaveAsCommand { get; }
     public ICommand RefreshCommand { get; }
     public ICommand IdentifyCommand { get; }
 
@@ -34,7 +34,7 @@ public sealed class MainViewModel : ViewModelBase
         _controller.StateChanged += OnStateChanged;
 
         SaveCommand = new RelayCommand(() => _controller.SaveCurrent());
-        NewProfileCommand = new RelayCommand(NewProfile);
+        SaveAsCommand = new RelayCommand(SaveAs);
         RefreshCommand = new RelayCommand(() =>
         {
             _controller.SyncMonitors();
@@ -140,10 +140,10 @@ public sealed class MainViewModel : ViewModelBase
         });
     }
 
-    private void NewProfile()
+    private void SaveAs()
     {
         var name = string.IsNullOrWhiteSpace(NewProfileName) ? "profile" : NewProfileName.Trim();
-        _controller.NewProfile(name);
+        _controller.SaveAsProfile(name);
         NewProfileName = "";
         ReloadProfiles();
         RebuildScreens();

@@ -5,7 +5,7 @@ namespace Dimmr.Models;
 
 /// <summary>
 /// A named set of screens with their dim levels. One profile per physical setup,
-/// for example "desk-g9" or "dual-external".
+/// for example "work" or "home".
 /// </summary>
 public sealed class Profile
 {

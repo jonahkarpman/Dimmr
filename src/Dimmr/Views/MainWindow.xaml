@@ -178,8 +178,10 @@
                     <StackPanel>
                         <Grid>
                             <TextBlock Text="SETTINGS" Style="{StaticResource HeaderText}" Margin="0" VerticalAlignment="Center" />
-                            <Button Content="[X]" Click="OnCloseSettings" HorizontalAlignment="Right" MinHeight="0" Padding="8,2"
-                                    Tag="no-sound" AutomationProperties.Name="Close settings" />
+                            <Button Click="OnCloseSettings" HorizontalAlignment="Right" Width="34" Height="34" MinHeight="0" Padding="0"
+                                    Tag="no-sound" AutomationProperties.Name="Close settings">
+                                <TextBlock Text="[X]" Foreground="{DynamicResource DeleteBrush}" FontFamily="Consolas" />
+                            </Button>
                         </Grid>
 
                         <TextBlock Text="STARTUP" Style="{StaticResource HeaderText}" />

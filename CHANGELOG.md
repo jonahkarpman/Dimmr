@@ -7,6 +7,14 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.4.4] - 2026-07-01
+
+### Changed
+
+- The Settings panel close `[X]` now matches the title-bar close button: a square box with
+  the `[X]` in the same color (orange in green, white in amber), instead of a wide
+  rectangle with a green symbol.
+
 ## [0.4.3] - 2026-07-01
 
 ### Fixed

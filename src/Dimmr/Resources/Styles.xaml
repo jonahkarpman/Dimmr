@@ -76,9 +76,8 @@
                         <Border x:Name="box" Width="18" Height="18"
                                 BorderBrush="{StaticResource BorderBrush}" BorderThickness="1"
                                 Background="{StaticResource SurfaceBrush}" VerticalAlignment="Center">
-                            <TextBlock x:Name="mark" Text="X" Foreground="{StaticResource AccentBrush}"
-                                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                                       Visibility="Collapsed" FontFamily="Consolas" />
+                            <Rectangle x:Name="mark" Width="10" Height="10"
+                                       Fill="{StaticResource AccentBrush}" Visibility="Collapsed" />
                         </Border>
                         <ContentPresenter Margin="8,0,0,0" VerticalAlignment="Center" />
                     </StackPanel>
@@ -109,6 +108,7 @@
         <Setter Property="FontFamily" Value="Consolas" />
         <Setter Property="Padding" Value="4,2" />
         <Setter Property="MinHeight" Value="26" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
     <!-- Combo boxes -->

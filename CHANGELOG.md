@@ -7,16 +7,23 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-01
+
 ### Changed
 
 - Brightness hotkeys moved to Win+Shift+Page Up / Win+Shift+Page Down (Alt+Page Up/Down
   conflicted with f.lux). Toggle stays Win+Shift+D.
-- Profile symbol buttons are now a uniform size, and the settings cog uses a crisper glyph.
+- Profile symbol buttons are now a uniform size, and the settings cog is a drawn gear.
+- Profile layout: save sits by the dropdown; new `[+]` and delete `[-]` sit together by
+  the name box, with delete in amber. Checkbox marks are filled squares, and the name box
+  text is vertically centered.
 
 ### Fixed
 
 - The profile dropdown reliably shows the active profile after creating a profile or
   reopening the window (the list is updated in place instead of cleared and rebuilt).
+- Settings cog now renders a drawn gear (the font glyph showed as a missing-glyph box).
+- The version in the title bar tracks the app version automatically.
 
 ## [0.2.0] - 2026-07-01
 

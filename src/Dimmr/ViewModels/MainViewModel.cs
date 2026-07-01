@@ -16,6 +16,8 @@ public sealed class MainViewModel : ViewModelBase
     public ObservableCollection<string> Profiles { get; } = new();
     public IReadOnlyList<int> StartupDimOptions { get; } = new[] { 0, 10, 20, 30, 40, 50, 60, 70, 80 };
 
+    public string AppTitle => $"> DIMMR v{AppConstants.Version}_";
+
     public ICommand SaveCommand { get; }
     public ICommand SaveAsCommand { get; }
     public ICommand RefreshCommand { get; }

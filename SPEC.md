@@ -1,6 +1,6 @@
 # Dimmr — Project Specification
 
-> Version: 0.2.0
+> Version: 0.3.0
 > Last updated: 2026-07-01
 > Status: Initial version built
 
@@ -110,7 +110,7 @@ Theme: Phosphor terminal, matching the sibling `windowr` project.
 - Sliders with a green fill and a rectangular thumb.
 - Themed dark dropdowns with a green focus glow.
 - A title-bar cog that opens a centered settings panel over the dimmed app.
-- Custom title bar: `> DIMMR v0.2.0_`, with `[_]` and `[X]`.
+- Custom title bar: `> DIMMR v0.3.0_`, with `[_]` and `[X]`.
 - Optional scanline overlay (toggleable).
 
 ---

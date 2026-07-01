@@ -11,9 +11,15 @@
     <AssemblyName>Dimmr</AssemblyName>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <Version>0.1.0</Version>
-    <ApplicationIcon></ApplicationIcon>
+    <ApplicationIcon>dimmr.ico</ApplicationIcon>
     <!-- The WPF PerMonitorV2 manifest is intentional; ignore the WinForms DPI advisory. -->
     <NoWarn>WFAC010</NoWarn>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="dimmr.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>

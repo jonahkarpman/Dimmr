@@ -78,6 +78,10 @@ bounds override.
 - A sound service with hooks for toggle and adjust actions.
 - Ships with system-sound placeholders; real Phosphor audio files can be added later.
 
+### 9. Identify screens
+- Flashes a large number, device name, and resolution on each monitor for two seconds, to
+  confirm which physical screen a config entry maps to.
+
 ---
 
 ## Design Language
@@ -104,6 +108,8 @@ Theme: Phosphor terminal, matching the sibling `windowr` project.
 - Bordered green buttons that fill green on hover.
 - Rectangular check boxes with an `X` mark.
 - Sliders with a green fill and a rectangular thumb.
+- Themed dark dropdowns with a green focus glow.
+- A title-bar cog that opens a centered settings panel over the dimmed app.
 - Custom title bar: `> DIMMR v0.1.0_`, with `[_]` and `[X]`.
 - Optional scanline overlay (toggleable).
 

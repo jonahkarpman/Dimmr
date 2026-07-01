@@ -26,6 +26,7 @@ public partial class App : System.Windows.Application
 
         _viewModel = new MainViewModel(_controller);
         _window = new MainWindow(_viewModel);
+        SetWindowIcon();
 
         SetupTray();
 
@@ -38,7 +39,7 @@ public partial class App : System.Windows.Application
     {
         _tray = new WinForms.NotifyIcon
         {
-            Icon = Drawing.SystemIcons.Application,
+            Icon = LoadIcon(),
             Visible = true,
             Text = "Dimmr"
         };
@@ -93,6 +94,29 @@ public partial class App : System.Windows.Application
 
         menu.Items.Add(new WinForms.ToolStripSeparator());
         menu.Items.Add(new WinForms.ToolStripMenuItem("Exit", null, (_, _) => ExitApp()));
+    }
+
+    private static string IconPath => System.IO.Path.Combine(AppContext.BaseDirectory, "dimmr.ico");
+
+    private static Drawing.Icon LoadIcon()
+    {
+        try
+        {
+            if (System.IO.File.Exists(IconPath))
+                return new Drawing.Icon(IconPath);
+        }
+        catch { /* fall back below */ }
+        return Drawing.SystemIcons.Application;
+    }
+
+    private void SetWindowIcon()
+    {
+        try
+        {
+            if (System.IO.File.Exists(IconPath))
+                _window.Icon = System.Windows.Media.Imaging.BitmapFrame.Create(new Uri(IconPath));
+        }
+        catch { /* window keeps default icon */ }
     }
 
     private void ShowWindow()

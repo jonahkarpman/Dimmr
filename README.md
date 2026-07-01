@@ -11,7 +11,8 @@ on any GPU.
 
 ## Features
 
-- Per-monitor dimming with a master level plus per-screen offsets
+- Per-monitor dimming with a master control plus an independent per-screen dim level
+- Identify Screens button to confirm which physical monitor is which
 - Named profiles for different setups (for example `desk-g9`, `dual-external`)
 - Correct coverage on docked and mixed-DPI displays (PerMonitorV2 aware, with a manual
   bounds override for any monitor that still misreads)

@@ -7,6 +7,13 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.4] - 2026-07-01
+
+### Fixed
+
+- Backspace and Delete now play the typing sound like other keys did (they don't raise a
+  text-input event, so they were previously silent).
+
 ## [0.3.3] - 2026-07-01
 
 ### Changed

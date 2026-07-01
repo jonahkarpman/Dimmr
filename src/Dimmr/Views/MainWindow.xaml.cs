@@ -33,6 +33,7 @@ public partial class MainWindow : Window
         AddHandler(Slider.ValueChangedEvent, new RoutedPropertyChangedEventHandler<double>(OnAnySliderChanged), true);
         AddHandler(Selector.SelectionChangedEvent, new SelectionChangedEventHandler(OnAnySelectionChanged), true);
         PreviewTextInput += OnAnyTextInput;
+        PreviewKeyDown += OnAnyKeyDown;
         Activated += (_, _) => _viewModel.StartHum();
         Deactivated += (_, _) => _viewModel.StopHum();
     }
@@ -119,6 +120,13 @@ public partial class MainWindow : Window
     }
 
     private void OnAnyTextInput(object sender, TextCompositionEventArgs e) => _viewModel.PlayKeystroke();
+
+    // Backspace and Delete do not raise text-input events, so play the typing sound here.
+    private void OnAnyKeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Back || e.Key == Key.Delete)
+            _viewModel.PlayKeystroke();
+    }
 
     private DateTime _lastSliderSound = DateTime.MinValue;
 

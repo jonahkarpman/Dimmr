@@ -18,6 +18,13 @@ public partial class IdentifyWindow : Window
             MakeClickThrough();
             ApplyPlacement();
         };
+        Loaded += (_, _) => ApplyPlacement();
+    }
+
+    protected override void OnDpiChanged(DpiScale oldDpi, DpiScale newDpi)
+    {
+        base.OnDpiChanged(oldDpi, newDpi);
+        ApplyPlacement();
     }
 
     public void Configure(string number, string label, int x, int y, int w, int h)
@@ -29,6 +36,8 @@ public partial class IdentifyWindow : Window
         _w = w;
         _h = h;
         ApplyPlacement();
+        // Reassert after layout settles, in case WPF resized on a DPI change during show.
+        Dispatcher.BeginInvoke(new Action(ApplyPlacement), System.Windows.Threading.DispatcherPriority.Loaded);
     }
 
     private void MakeClickThrough()

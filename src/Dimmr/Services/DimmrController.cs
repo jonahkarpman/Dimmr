@@ -205,6 +205,12 @@ public sealed class DimmrController : IDisposable
     }
 
     public void PlayClick() => _sounds.Click();
+    public void PlayNavIn() => _sounds.NavIn();
+    public void PlayNavOut() => _sounds.NavOut();
+    public void PlayToggleTick() => _sounds.ToggleTick();
+    public void PlayKeystroke() => _sounds.Keystroke();
+    public void StartHum() => _sounds.StartHum();
+    public void StopHum() => _sounds.StopHum();
 
     // ----- hotkey handlers -----
 

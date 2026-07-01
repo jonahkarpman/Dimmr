@@ -11,8 +11,10 @@ project uses [Semantic Versioning](https://semver.org/).
 
 - Delete profile via a `[x]` button with a confirmation dialog ("CONFIRM DELETION",
   "[ ABORT ] / [ AFFIRM ]") and a Fallout scrap sound on confirm.
-- Fallout UI sounds wired from bundled .wav files (click, toggle, adjust, scrap, start),
-  gated by the Sounds toggle.
+- Fallout UI sounds wired from bundled .wav files: click on buttons, target-lock on
+  checkboxes, keystroke on typing, VATS in/out on opening/closing settings, start on new
+  profile, scrap on delete, plus a looping ambient hum while the window is focused. All
+  gated by the Sounds toggle; the hum has its own "Ambient hum" toggle.
 
 ### Changed
 
@@ -22,6 +24,8 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Tooltips now use the dark terminal styling (green on near-black) instead of the system
+  white background.
 - Creating a profile clones the current live settings instead of a blank, muted profile,
   and now reliably selects the new profile.
 

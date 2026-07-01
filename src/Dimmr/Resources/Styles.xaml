@@ -20,6 +20,17 @@
         <Setter Property="Margin" Value="0,10,0,6" />
     </Style>
 
+    <!-- Tooltips: dark terminal styling instead of the system white -->
+    <Style TargetType="ToolTip">
+        <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource PrimaryTextBrush}" />
+        <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FontFamily" Value="Consolas" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Padding" Value="6,3" />
+    </Style>
+
     <!-- Buttons -->
     <Style TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource PrimaryTextBrush}" />

@@ -18,6 +18,7 @@ public sealed class AppSettings
     public int StartupDim { get; set; }
 
     public bool SoundsEnabled { get; set; }
+    public bool Hum { get; set; }
     public bool Scanlines { get; set; } = true;
     public bool Glow { get; set; }
 }

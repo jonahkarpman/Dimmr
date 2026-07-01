@@ -33,7 +33,7 @@ public sealed class MainViewModel : ViewModelBase
         _controller = controller;
         _controller.StateChanged += OnStateChanged;
 
-        SaveCommand = new RelayCommand(() => { _controller.SaveCurrent(); _controller.PlayClick(); });
+        SaveCommand = new RelayCommand(() => _controller.SaveCurrent());
         SaveAsCommand = new RelayCommand(SaveAs);
         RefreshCommand = new RelayCommand(() =>
         {
@@ -109,7 +109,7 @@ public sealed class MainViewModel : ViewModelBase
     public bool SoundsEnabled
     {
         get => _controller.Settings.SoundsEnabled;
-        set { _controller.Settings.SoundsEnabled = value; _controller.SaveSettings(); OnPropertyChanged(); }
+        set { _controller.Settings.SoundsEnabled = value; _controller.SaveSettings(); if (value) _controller.StartHum(); else _controller.StopHum(); OnPropertyChanged(); }
     }
 
     public bool Scanlines
@@ -122,6 +122,12 @@ public sealed class MainViewModel : ViewModelBase
     {
         get => _controller.Settings.Glow;
         set { _controller.Settings.Glow = value; _controller.SaveSettings(); OnPropertyChanged(); }
+    }
+
+    public bool Hum
+    {
+        get => _controller.Settings.Hum;
+        set { _controller.Settings.Hum = value; _controller.SaveSettings(); if (value) _controller.StartHum(); else _controller.StopHum(); OnPropertyChanged(); }
     }
 
     // ----- helpers -----
@@ -170,6 +176,14 @@ public sealed class MainViewModel : ViewModelBase
         => Application.Current?.Dispatcher.BeginInvoke(
             new System.Action(() => OnPropertyChanged(nameof(SelectedProfile))),
             System.Windows.Threading.DispatcherPriority.Background);
+
+    public void PlayClick() => _controller.PlayClick();
+    public void PlayNavIn() => _controller.PlayNavIn();
+    public void PlayNavOut() => _controller.PlayNavOut();
+    public void PlayToggleTick() => _controller.PlayToggleTick();
+    public void PlayKeystroke() => _controller.PlayKeystroke();
+    public void StartHum() => _controller.StartHum();
+    public void StopHum() => _controller.StopHum();
 
     private void ReloadProfiles()
     {

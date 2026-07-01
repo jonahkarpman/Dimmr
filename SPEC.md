@@ -171,11 +171,11 @@ The Phosphor look must not reduce usability. Target WCAG 2.1 AA where applicable
 - [x] Keyboard-operable controls and focus visuals
 - [x] Contrast-safe palette
 - [x] Scanlines toggle
-- [ ] Verify tab order on every view
-- [ ] Test with Windows Narrator
+- [x] Honor Reduce Motion for any animation
+- [ ] Verify tab order on every view (manual QA)
+- [ ] Test with Windows Narrator (manual QA)
 - [ ] Honor SystemParameters.HighContrast fallback
-- [ ] Honor Reduce Motion for any animation
-- [ ] Test at 150 percent DPI across mixed-DPI monitors
+- [ ] Test at 150 percent DPI across mixed-DPI monitors (manual QA)
 
 ---
 
@@ -191,23 +191,16 @@ The Phosphor look must not reduce usability. Target WCAG 2.1 AA where applicable
 - [x] Phosphor theme and base accessibility
 
 ### Phase 2 — Polish
-- [ ] Real Phosphor sound effects
-- [ ] Segmented (health-bar) slider styling
+- [x] Real sound effects (bundled)
+- [x] Segmented (health-bar) slider styling
 - [ ] Visual monitor preview for editing bounds
-- [ ] Custom tray icon
-- [ ] Scanline overlay rendered in the window
-- [ ] High Contrast and Reduce Motion handling
+- [x] Custom tray icon
+- [x] Scanline overlay rendered in the window
+- [x] Reduce Motion handling
+- [ ] High Contrast handling
 
 ### Phase 3 — Advanced
 - [ ] Per-monitor tint (not just black)
 - [ ] Schedule-based auto dim (time of day)
 - [ ] Auto profile selection by connected monitors
 - [ ] Packaged single-file build
-
----
-
-## Open Questions
-
-1. Should dimming ever cover exclusive full-screen games, or explicitly skip them?
-2. Should profiles auto-select based on the connected monitors?
-3. Package as a single-file exe, or keep the framework-dependent build?

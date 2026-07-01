@@ -17,6 +17,7 @@ public sealed class AppSettings
     /// <summary>Dim percentage applied on launch when <see cref="ResetDimOnStartup"/> is true.</summary>
     public int StartupDim { get; set; }
 
+    public bool DimmingOn { get; set; } = true;
     public bool SoundsEnabled { get; set; }
     public bool Hum { get; set; }
     public bool Scanlines { get; set; } = true;

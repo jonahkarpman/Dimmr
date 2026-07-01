@@ -29,12 +29,15 @@ public sealed class OverlayManager
     }
 
     /// <summary>Updates opacity of existing overlays without recreating them.</summary>
+    /// <summary>Global on/off gate; when false, all overlays are clear.</summary>
+    public bool DimmingOn { get; set; } = true;
+
     public void Refresh()
     {
         if (_profile is null)
             return;
         foreach (var entry in _overlays.Values)
-            entry.Window.SetDim(_profile.EffectiveDim(entry.Config) / 100.0);
+            entry.Window.SetDim(DimmingOn ? _profile.EffectiveDim(entry.Config) / 100.0 : 0.0);
     }
 
     private void Reconcile()

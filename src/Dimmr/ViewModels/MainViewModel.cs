@@ -53,13 +53,13 @@ public sealed class MainViewModel : ViewModelBase
 
     public bool MasterOn
     {
-        get => _controller.Profile.MasterOn;
+        get => _controller.Settings.DimmingOn;
         set { _controller.SetMasterOn(value); OnPropertyChanged(); }
     }
 
     public int MasterDim
     {
-        get => _controller.Profile.MasterDim;
+        get => _controller.MasterDim;
         set
         {
             _controller.SetMasterDim(value);

@@ -62,10 +62,10 @@ public partial class App : System.Windows.Application
 
         menu.Items.Add(new WinForms.ToolStripMenuItem("Settings", null, (_, _) => ShowWindow()));
 
-        var toggle = new WinForms.ToolStripMenuItem("Dimming on") { Checked = _controller.Profile.MasterOn };
+        var toggle = new WinForms.ToolStripMenuItem("Dimming on") { Checked = _controller.Settings.DimmingOn };
         toggle.Click += (_, _) =>
         {
-            _controller.SetMasterOn(!_controller.Profile.MasterOn);
+            _controller.SetMasterOn(!_controller.Settings.DimmingOn);
             _viewModel.ExternalRefresh();
         };
         menu.Items.Add(toggle);

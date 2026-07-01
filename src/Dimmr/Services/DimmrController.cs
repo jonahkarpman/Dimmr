@@ -20,6 +20,9 @@ public sealed class DimmrController : IDisposable
     public AppSettings Settings { get; }
     public Profile Profile { get; private set; }
 
+    /// <summary>Dim level of the enabled screens (max), shown on the master slider.</summary>
+    public int MasterDim => Profile.Screens.Where(s => s.Enabled).Select(s => s.Dim).DefaultIfEmpty(0).Max();
+
     /// <summary>Raised when state changes from outside the UI (hotkeys, display changes).</summary>
     public event Action? StateChanged;
 
@@ -35,6 +38,7 @@ public sealed class DimmrController : IDisposable
     {
         SyncMonitors();
         ApplyStartupDim();
+        _overlays.DimmingOn = Settings.DimmingOn;
         _overlays.Apply(Profile);
 
         _hotkeys.ToggleRequested += ToggleMaster;
@@ -54,10 +58,11 @@ public sealed class DimmrController : IDisposable
         if (!Settings.ResetDimOnStartup)
             return;
 
-        Profile.MasterDim = Math.Clamp(Settings.StartupDim, 0, AppConstants.MaxDim);
-        Profile.MasterOn = Settings.StartupDim > 0;
+        var dim = Math.Clamp(Settings.StartupDim, 0, AppConstants.MaxDim);
+        Settings.DimmingOn = dim > 0;
         foreach (var screen in Profile.Screens)
-            screen.Dim = Profile.MasterDim;
+            if (screen.Enabled)
+                screen.Dim = dim;
     }
 
     /// <summary>Adds a screen entry for any connected monitor the profile does not know yet.</summary>
@@ -75,7 +80,7 @@ public sealed class DimmrController : IDisposable
                     DeviceName = mon.DeviceName,
                     Label = $"Screen {index} ({mon.Width}x{mon.Height})",
                     Enabled = true,
-                    Dim = Profile.MasterDim,
+                    Dim = 30,
                     AutoBounds = true,
                     X = mon.X,
                     Y = mon.Y,
@@ -99,23 +104,28 @@ public sealed class DimmrController : IDisposable
 
     public void SetMasterOn(bool on)
     {
-        Profile.MasterOn = on;
+        Settings.DimmingOn = on;
+        _overlays.DimmingOn = on;
         _overlays.Refresh();
     }
 
     public void SetMasterDim(int dim)
     {
-        Profile.MasterDim = Math.Clamp(dim, 0, AppConstants.MaxDim);
-        Profile.MasterOn = Profile.MasterDim > 0;
+        var v = Math.Clamp(dim, 0, AppConstants.MaxDim);
         foreach (var screen in Profile.Screens)
-            screen.Dim = Profile.MasterDim;
+            if (screen.Enabled)
+                screen.Dim = v;
+        if (v > 0)
+            Settings.DimmingOn = true;
+        _overlays.DimmingOn = Settings.DimmingOn;
         _overlays.Refresh();
     }
 
     /// <summary>Called after editing one screen's dim; unmutes so the change is visible.</summary>
     public void ScreenEdited()
     {
-        Profile.MasterOn = true;
+        Settings.DimmingOn = true;
+        _overlays.DimmingOn = true;
         _overlays.Refresh();
     }
 
@@ -166,8 +176,6 @@ public sealed class DimmrController : IDisposable
         Profile = new Profile
         {
             Name = name,
-            MasterOn = Profile.MasterOn,
-            MasterDim = Profile.MasterDim,
             Screens = Profile.Screens.Select(s => new ScreenConfig
             {
                 DeviceName = s.DeviceName,
@@ -217,15 +225,19 @@ public sealed class DimmrController : IDisposable
 
     private void ToggleMaster()
     {
-        Profile.MasterOn = !Profile.MasterOn;
-        _overlays.Refresh();
+        SetMasterOn(!Settings.DimmingOn);
         _sounds.Toggle();
         StateChanged?.Invoke();
     }
 
     private void AdjustMaster(int delta)
     {
-        SetMasterDim(Profile.MasterDim + delta);
+        foreach (var screen in Profile.Screens)
+            if (screen.Enabled)
+                screen.Dim = Math.Clamp(screen.Dim + delta, 0, AppConstants.MaxDim);
+        Settings.DimmingOn = true;
+        _overlays.DimmingOn = true;
+        _overlays.Refresh();
         _sounds.Adjust();
         StateChanged?.Invoke();
     }

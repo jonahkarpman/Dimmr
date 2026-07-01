@@ -7,6 +7,16 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-01
+
+### Changed
+
+- Dimming is now purely per-screen: a screen dims only if it is enabled, and per-screen
+  enable persists per profile. "Dimming on" is a single global switch (stored in settings)
+  rather than a per-profile master, so it no longer resets when you switch profiles.
+- Brightness hotkeys and the master slider only affect enabled screens; disabled screens
+  are never changed.
+
 ## [0.2.2] - 2026-07-01
 
 ### Fixed

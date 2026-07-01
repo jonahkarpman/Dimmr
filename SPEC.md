@@ -1,6 +1,6 @@
 # Dimmr — Project Specification
 
-> Version: 0.2.2
+> Version: 0.3.0
 > Last updated: 2026-07-01
 > Status: Initial version built
 
@@ -42,13 +42,13 @@ bounds override.
 - Opacity is the dim level, so input passes through and nothing is blocked.
 - Positioned in physical pixels via SetWindowPos for exact coverage.
 
-### 2. Master and per-screen control
+### 2. Per-screen dimming and the global switch
 - Each screen has its own dim level, 0 to 85 percent (capped below 100 so a screen never
-  goes fully black), plus an enable flag.
-- The master switch mutes or unmutes all screens. The master slider is a broadcast: moving
-  it sets every enabled screen to that level and unmutes.
-- Editing a single screen's slider unmutes so the change is visible immediately.
-- Effective dim = (master on and screen enabled) ? clamp(screen dim, 0, 85) : 0.
+  goes fully black), plus an enable flag. Enabled screens dim; disabled ones never do.
+- "Dimming on" is a single global switch (a mute), stored in settings, not per profile.
+- The master slider sets every enabled screen to one level; hotkeys adjust every enabled
+  screen relatively. Neither touches disabled screens.
+- Effective dim = (dimming on and screen enabled) ? clamp(screen dim, 0, 85) : 0.
 
 ### 3. Bounds handling
 - Each screen defaults to auto-detected bounds (PerMonitorV2 physical pixels).
@@ -110,7 +110,7 @@ Theme: Phosphor terminal, matching the sibling `windowr` project.
 - Sliders with a green fill and a rectangular thumb.
 - Themed dark dropdowns with a green focus glow.
 - A title-bar cog that opens a centered settings panel over the dimmed app.
-- Custom title bar: `> DIMMR v0.2.2_`, with `[_]` and `[X]`.
+- Custom title bar: `> DIMMR v0.3.0_`, with `[_]` and `[X]`.
 - Optional scanline overlay (toggleable).
 
 ---

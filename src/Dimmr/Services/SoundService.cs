@@ -7,7 +7,7 @@ using Dimmr.Models;
 namespace Dimmr.Services;
 
 /// <summary>
-/// Plays Fallout-style UI sounds via WPF MediaPlayer, one player per clip so they can
+/// Plays retro terminal UI sounds via WPF MediaPlayer, one player per clip so they can
 /// overlap. Includes a looping ambient hum. Files live in Resources/Sounds next to the
 /// exe. One-shot sounds are gated by the Sounds setting; the hum also needs Hum on.
 /// </summary>
@@ -23,16 +23,16 @@ public sealed class SoundService : IDisposable
         _settings = settings;
 
         var dir = Path.Combine(AppContext.BaseDirectory, "Resources", "Sounds");
-        Register("click", Path.Combine(dir, "UI_Pipboy_OK_Press.wav"));
-        Register("toggle", Path.Combine(dir, "UI_VATS_TargetLock_01.wav"));
-        Register("adjust", Path.Combine(dir, "UI_VATS_Move.wav"));
-        Register("scrap", Path.Combine(dir, "UI_WorkshopMode_Item_Scrap_Generic_01.wav"));
-        Register("start", Path.Combine(dir, "UI_Start_01.wav"));
-        Register("navin", Path.Combine(dir, "UI_VATS_Enter.wav"));
-        Register("navout", Path.Combine(dir, "UI_VATS_Exit.wav"));
-        Register("keystroke", Path.Combine(dir, "UI_Hacking_CharSingle_01.wav"));
+        Register("click", Path.Combine(dir, "click.wav"));
+        Register("toggle", Path.Combine(dir, "toggle.wav"));
+        Register("adjust", Path.Combine(dir, "adjust.wav"));
+        Register("scrap", Path.Combine(dir, "scrap.wav"));
+        Register("start", Path.Combine(dir, "start.wav"));
+        Register("navin", Path.Combine(dir, "nav-in.wav"));
+        Register("navout", Path.Combine(dir, "nav-out.wav"));
+        Register("keystroke", Path.Combine(dir, "keystroke.wav"));
 
-        var humPath = Path.Combine(dir, "UI_PipBoy_Hum_LP.wav");
+        var humPath = Path.Combine(dir, "hum.wav");
         if (File.Exists(humPath))
         {
             try

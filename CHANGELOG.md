@@ -7,6 +7,14 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.3] - 2026-07-01
+
+### Changed
+
+- Renamed the bundled UI sound files to generic, role-based names (`click.wav`,
+  `toggle.wav`, `hum.wav`, and so on) and removed the unused clips. No change to how any
+  sound plays.
+
 ## [0.3.2] - 2026-07-01
 
 ### Added

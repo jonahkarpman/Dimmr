@@ -1,6 +1,6 @@
 # Dimmr — Project Specification
 
-> Version: 0.3.0
+> Version: 0.3.1
 > Last updated: 2026-07-01
 > Status: Initial version built
 
@@ -62,7 +62,8 @@ bounds override.
 
 ### 5. Hotkeys
 - Win+Shift+D toggles dimming to the last level.
-- Win+Shift+Page Up brightens, Win+Shift+Page Down dims (5 percent steps).
+- Win+Shift+Page Up adds dim, Win+Shift+Page Down removes dim (5 percent steps), on the
+  enabled screens only.
 - Registered globally; coexists with f.lux (overlay vs gamma are independent).
 
 ### 6. System tray
@@ -110,7 +111,7 @@ Theme: Phosphor terminal, matching the sibling `windowr` project.
 - Sliders with a green fill and a rectangular thumb.
 - Themed dark dropdowns with a green focus glow.
 - A title-bar cog that opens a centered settings panel over the dimmed app.
-- Custom title bar: `> DIMMR v0.3.0_`, with `[_]` and `[X]`.
+- Custom title bar: `> DIMMR v0.3.1_`, with `[_]` and `[X]`.
 - Optional scanline overlay (toggleable).
 
 ---

@@ -124,8 +124,6 @@ public sealed class DimmrController : IDisposable
     /// <summary>Called after editing one screen's dim; unmutes so the change is visible.</summary>
     public void ScreenEdited()
     {
-        Settings.DimmingOn = true;
-        _overlays.DimmingOn = true;
         _overlays.Refresh();
     }
 

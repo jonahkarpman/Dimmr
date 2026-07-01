@@ -7,6 +7,18 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-07-01
+
+### Changed
+
+- Removed the master dim slider from the window; the per-screen sliders are the dim
+  control, and "Dimming on" is just the global on/off. Editing a screen no longer flips
+  the global switch.
+
+### Fixed
+
+- Brightness hotkeys were reversed: Win+Shift+Page Up now adds dim, Page Down removes it.
+
 ## [0.3.0] - 2026-07-01
 
 ### Changed

@@ -47,8 +47,8 @@ dotnet run --project src/Dimmr
 | Hotkey | Action |
 |--------|--------|
 | Win+Shift+D | Toggle dimming on/off to the last level |
-| Win+Shift+Page Up | Brighter (less dim) |
-| Win+Shift+Page Down | Dimmer (more dim) |
+| Win+Shift+Page Up | More dim |
+| Win+Shift+Page Down | Less dim |
 
 ### Startup behavior
 

@@ -54,21 +54,10 @@
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="14,6,14,6">
                 <StackPanel>
 
-                    <!-- Master -->
-                    <TextBlock Text="MASTER" Style="{StaticResource HeaderText}" />
-                    <CheckBox Content="Dimming on" IsChecked="{Binding MasterOn}"
-                              AutomationProperties.Name="Master dimming on" />
-                    <Grid Margin="0,8,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Slider Minimum="0" Maximum="85" Value="{Binding MasterDim}"
-                                SmallChange="5" LargeChange="10" IsSnapToTickEnabled="True" TickFrequency="1"
-                                AutomationProperties.Name="Master dim level" />
-                        <TextBlock Grid.Column="1" Text="{Binding MasterDim, StringFormat={}{0}%}"
-                                   Width="44" TextAlignment="Right" VerticalAlignment="Center" />
-                    </Grid>
+                    <!-- Dimming -->
+                    <TextBlock Text="DIMMING" Style="{StaticResource HeaderText}" />
+                    <CheckBox Content="Dimming on (global)" IsChecked="{Binding MasterOn}"
+                              AutomationProperties.Name="Dimming on" />
 
                     <!-- Screens -->
                     <TextBlock Text="SCREENS" Style="{StaticResource HeaderText}" />
@@ -172,7 +161,7 @@
             <!-- Status bar -->
             <Border Grid.Row="2" Background="{StaticResource SurfaceBrush}" Padding="10,4">
                 <TextBlock Foreground="{StaticResource SecondaryTextBrush}" FontSize="11"
-                           Text="Win+Shift+D toggle  .  Win+Shift+PgUp brighter  .  Win+Shift+PgDn dimmer" />
+                           Text="Win+Shift+D toggle  .  Win+Shift+PgUp more dim  .  Win+Shift+PgDn less dim" />
             </Border>
 
             <!-- Settings overlay -->

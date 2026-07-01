@@ -35,8 +35,8 @@ public sealed class HotkeyService : IDisposable
 
         const uint noRepeat = NativeMethods.MOD_NOREPEAT;
         NativeMethods.RegisterHotKey(_hwnd, IdToggle, NativeMethods.MOD_WIN | NativeMethods.MOD_SHIFT | noRepeat, 0x44); // D
-        NativeMethods.RegisterHotKey(_hwnd, IdBrighter, NativeMethods.MOD_WIN | NativeMethods.MOD_SHIFT | noRepeat, NativeMethods.VK_PRIOR);
-        NativeMethods.RegisterHotKey(_hwnd, IdDimmer, NativeMethods.MOD_WIN | NativeMethods.MOD_SHIFT | noRepeat, NativeMethods.VK_NEXT);
+        NativeMethods.RegisterHotKey(_hwnd, IdBrighter, NativeMethods.MOD_WIN | NativeMethods.MOD_SHIFT | noRepeat, NativeMethods.VK_NEXT);  // Page Down = less dim
+        NativeMethods.RegisterHotKey(_hwnd, IdDimmer, NativeMethods.MOD_WIN | NativeMethods.MOD_SHIFT | noRepeat, NativeMethods.VK_PRIOR);   // Page Up = more dim
     }
 
     private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)

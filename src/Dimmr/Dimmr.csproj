@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>Dimmr</RootNamespace>
+    <AssemblyName>Dimmr</AssemblyName>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Version>0.1.0</Version>
+    <ApplicationIcon></ApplicationIcon>
+    <!-- The WPF PerMonitorV2 manifest is intentional; ignore the WinForms DPI advisory. -->
+    <NoWarn>WFAC010</NoWarn>
+  </PropertyGroup>
+
+</Project>

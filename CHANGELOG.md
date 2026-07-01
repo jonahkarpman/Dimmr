@@ -7,6 +7,15 @@ project uses [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-07-01
+
+### Fixed
+
+- Brightness hotkeys (Win+Shift+Page Up / Down) now actually change the dim level; they
+  were adjusting the master value without applying it to the screens.
+- The delete button is now amber (it had been rendering green because the global text
+  style overrode the button's colour).
+
 ## [0.2.1] - 2026-07-01
 
 ### Changed

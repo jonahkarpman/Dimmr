@@ -156,10 +156,12 @@
                         <Button Grid.Column="1" Content="[+]" Command="{Binding SaveAsCommand}" Margin="6,0,0,0"
                                 Width="34" Height="30" MinHeight="0" Padding="0"
                                 Tag="no-sound" ToolTip="New profile from current settings" AutomationProperties.Name="New profile" />
-                        <Button Grid.Column="2" Content="[-]" Click="OnDeleteProfile" Margin="6,0,0,0"
+                        <Button Grid.Column="2" Click="OnDeleteProfile" Margin="6,0,0,0"
                                 Width="34" Height="30" MinHeight="0" Padding="0"
-                                Foreground="{StaticResource DangerBrush}" Tag="no-sound" ToolTip="Delete selected profile"
-                                AutomationProperties.Name="Delete profile" />
+                                Tag="no-sound" ToolTip="Delete selected profile"
+                                AutomationProperties.Name="Delete profile">
+                            <TextBlock Text="[-]" Foreground="{StaticResource DangerBrush}" FontFamily="Consolas" />
+                        </Button>
                     </Grid>
                     <Button Content="REFRESH MONITORS" Command="{Binding RefreshCommand}" Margin="0,8,0,0"
                             HorizontalAlignment="Left" />

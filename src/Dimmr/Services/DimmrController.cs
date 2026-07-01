@@ -225,9 +225,7 @@ public sealed class DimmrController : IDisposable
 
     private void AdjustMaster(int delta)
     {
-        Profile.MasterOn = true;
-        Profile.MasterDim = Math.Clamp(Profile.MasterDim + delta, 0, AppConstants.MaxDim);
-        _overlays.Refresh();
+        SetMasterDim(Profile.MasterDim + delta);
         _sounds.Adjust();
         StateChanged?.Invoke();
     }
